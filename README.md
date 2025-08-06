@@ -23,7 +23,7 @@ The scope and sequence of these releases may evolve, but the intent is to make t
 
 For an overview of the project’s motivation, design, and impact, visit the **Project Showcase**:
 
-🔗 **[Project Page](https://tryolabs.github.io/TNC_Edge_AI)**
+🔗 **[Project Page](https://tnc-ca-geo.github.io/em_edge_review/)**
 
 
 ## 📄 Technical Report
