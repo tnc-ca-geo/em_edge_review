@@ -1,0 +1,8 @@
+# For a full list of available parameters, see:
+# https://docs.ultralytics.com/modes/val/#arguments-for-yolo-model-validation
+
+project: "Evaluation_results"
+conf: 0.01
+split: "test"
+save_json: true
+agnostic_nms: true
