@@ -30,7 +30,7 @@ names:
 
 ## 🏋️ Training the model
 
-To fine-tune th provided baseline model (`baseline_fish_detector.pt`) on your custom dataset, run:
+To fine-tune the provided baseline model (`baseline_fish_detector.pt`) on your custom dataset, run:
 
 ```bash
 uv run fish_detector_model/train.py \
@@ -38,6 +38,12 @@ uv run fish_detector_model/train.py \
 ```
 
 - This command uses settings from `train_args.yaml`.
+- You can specify a different config file using `--config`:
+  ```bash
+  uv run fish_detector_model/train.py \
+    --data /path/to/data.yaml \
+    --conf path/to/your/custom_config.yaml
+  ```
 - To enable MLflow experiment tracking, add the `--mlflow` flag
   -> Make sure the `MLFLOW_TRACKING_URI` environment variable is set.
 
@@ -53,6 +59,12 @@ uv run fish_detector_model/evaluate.py \
 ```
 
 - This command uses settings from `eval_args.yaml`
+- You can specify a different config file using `--config`:
+  ```bash
+  uv run fish_detector_model/train.py \
+    --data /path/to/data.yaml \
+    --conf path/to/your/custom_config.yaml
+  ```
 
 
 ## 📁 Configuration Files
