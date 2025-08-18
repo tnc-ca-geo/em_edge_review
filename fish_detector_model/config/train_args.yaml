@@ -2,11 +2,11 @@
 # https://docs.ultralytics.com/modes/train/#train-settings
 
 # Basic training parameters
-model_path: "fish_detector_model/baseline_model/baseline_fish_detector.pt"
+model: "fish_detector_model/baseline_model/baseline_fish_detector.pt"
 pretrained: true
 
-img_size: 640
-batch_size: 16
+imgsz: 640
+batch: 16
 epochs: 300
 patience: 60
 lr0: 0.11e-6
@@ -30,7 +30,6 @@ dfl: 1.5
 # Regularization
 weight_decay: 0.0005
 dropout: 0.228
-label_smoothing: 0.0
 
 # GPU/CPU settings
 device: "0,1"

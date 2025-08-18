@@ -2,7 +2,6 @@ import argparse
 from datetime import datetime
 
 import yaml
-from dotenv import load_dotenv
 from ultralytics import YOLO
 
 
@@ -32,22 +31,16 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     """Main function to evaluate the YOLO model with custom settings."""
     args = parse_args()
-    load_dotenv(override=True)
 
     with open(args.config) as f:
         cfg = yaml.safe_load(f)
 
     model = YOLO(args.model_path)
 
-    model.val(
-        data=args.data,
-        project=cfg["project"],
-        name=datetime.now().strftime("date_%Y%m%d_%H%M%S"),
-        save_json=cfg["save_json"],
-        conf=cfg["conf"],
-        split=cfg["split"],
-        agnostic_nms=cfg["agnostic_nms"],
-    )
+    cfg["data"] = args.data
+    cfg["name"] = datetime.now().strftime("date_%Y%m%d_%H%M%S")
+
+    model.val(**cfg)
 
 
 if __name__ == "__main__":

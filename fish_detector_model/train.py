@@ -23,8 +23,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--data",
-        type=str,
         required=True,
+        type=str,
         help="Path to data.yaml with your custom dataset",
     )
     parser.add_argument(
@@ -53,36 +53,13 @@ def main() -> None:
     else:
         settings.update({"mlflow": False})
 
-    model = YOLO(cfg["model_path"])
+    model = YOLO(cfg["model"])
+    
+    cfg.pop("model")
+    cfg["data"] = args.data
+    cfg["name"] = datetime.now().strftime("date_%Y%m%d_%H%M%S")
 
-    model.train(
-        data=args.data,
-        imgsz=cfg["img_size"],
-        batch=cfg["batch_size"],
-        epochs=cfg["epochs"],
-        patience=cfg["patience"],
-        optimizer=cfg["optimizer"],
-        lr0=cfg["lr0"],
-        pretrained=cfg["pretrained"],
-        project=cfg["project"],
-        name=datetime.now().strftime("date_%Y%m%d_%H%M%S"),
-        plots=cfg["plots"],
-        cos_lr=cfg["cos_lr"],
-        warmup_epochs=cfg["warmup_epochs"],
-        degrees=cfg["degrees"],
-        shear=cfg["shear"],
-        scale=cfg["scale"],
-        perspective=cfg["perspective"],
-        translate=cfg["translate"],
-        fliplr=cfg["fliplr"],
-        box=cfg["box"],
-        cls=cfg["cls"],
-        dfl=cfg["dfl"],
-        weight_decay=cfg["weight_decay"],
-        dropout=cfg["dropout"],
-        label_smoothing=cfg["label_smoothing"],
-        device=cfg["device"],
-    )
+    model.train(**cfg)
 
 
 if __name__ == "__main__":
