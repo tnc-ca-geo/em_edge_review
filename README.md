@@ -34,6 +34,18 @@ This directory contains all necessary scripts and configuration files to **fine-
 
 > 📘 See `fish_detector_model/README.md` for detailed training instructions
 
+### `onboard_system/ai_powered_system/fish_tracker_and_counter/` – Fish Tracking & Counting
+
+This directory provides code to **track, classify, and count fish** in EM footage using a trained fish detector.
+It uses multi-object tracking (BoT-SORT by default) and custom counting logic to detect IN/OUT events when fish cross a user-defined counting line along the vessel’s deck.
+
+Outputs include:
+
+- Annotated videos with bounding boxes and counts
+- JSON event files for each detected crossing
+
+> 📘 See `onboard_system/ai_powered_system/fish_tracker_and_counter/README.md` for usage instructions and details on adjusting the counting line for your vessel’s camera setup.
+
 
 ## 🌐 Project Page
 
