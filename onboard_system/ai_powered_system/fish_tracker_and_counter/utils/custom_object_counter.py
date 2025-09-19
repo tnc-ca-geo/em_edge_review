@@ -51,6 +51,7 @@ class CustomObjectCounter(BaseObjectCounter):
         self.video_frame_count = 0  # Per-video frame counter
         self.global_frame_count = 0  # Global frame counter across all videos
         self.tracker = kwargs.get("tracker")
+        self.device = kwargs.get("device")
         self.tracking_data = []
         self.id_offset = 0
 
@@ -145,7 +146,7 @@ class CustomObjectCounter(BaseObjectCounter):
             agnostic_nms=self.CFG["agnostic_nms"],
             tracker=self.tracker,
             verbose=False,
-            device=0,
+            device=self.device,
         )
 
         # Extract tracks for OBB or object detection

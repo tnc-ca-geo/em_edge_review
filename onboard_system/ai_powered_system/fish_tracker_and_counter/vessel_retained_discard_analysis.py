@@ -1,7 +1,6 @@
 import argparse
 import os
-import sys
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 import cv2
 
@@ -62,6 +61,18 @@ def parse_args() -> argparse.Namespace:
         default=0.1,
         help="Intersection Over Union threshold for Non-Maximum Suppression.",
     )
+    parser.add_argument(
+        "--tracker_config",
+        type=str,
+        default="onboard_system/ai_powered_system/fish_tracker_and_counter/config/botsort.yaml",
+        help="Path to the tracker YAML (e.g., BoT-SORT).",
+    )
+    parser.add_argument(
+        "--device",
+        type=str,
+        default="0",
+        help='Compute device for Ultralytics: "cpu", "0", "cuda:0", etc. (default: "0").',
+    )
 
     args = parser.parse_args()
 
@@ -77,6 +88,8 @@ def initialize_counter(
     iou: float,
     output_json_folder: str,
     counting_region: List[Tuple[int, int]],
+    tracker_config: str = "onboard_system/ai_powered_system/fish_tracker_and_counter/config/botsort.yaml",
+    device: Union[str, int] = "0",
 ) -> CustomObjectCounter:
     """Initialize the CustomObjectCounter with specified parameters."""
     logger.info("Initializing CustomObjectCounter...")
@@ -87,7 +100,8 @@ def initialize_counter(
         show_in=True,
         show_out=True,
         line_width=2,
-        tracker="onboard_system/ai_powered_system/fish_tracker_and_counter/config/botsort.yaml",
+        tracker=tracker_config,
+        device=device,
         persist=True,
         agnostic_nms=True,
         conf=conf,
@@ -175,6 +189,8 @@ def main() -> None:
         iou=args.iou,
         output_json_folder=args.output_json_folder,
         counting_region=counting_region,
+        tracker_config=args.tracker_config,
+        device=args.device,
     )
 
     count_fish_in_video(

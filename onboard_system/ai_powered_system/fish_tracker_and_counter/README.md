@@ -15,7 +15,7 @@ Before running the scripts, ensure you have:
 
 - Installed all dependencies (see the root-level `README.md`)
 - A trained fish detector (e.g., `fish_detector_model/baseline_model/baseline_fish_detector.pt`)
-- Optional: Adjusted tracker settings in `config/botsort.yaml`
+- Optional: Adjusted tracker settings in `config/botsort.yaml` or pass your own YAML path via `--tracker_config`
 
 ## 🚀 Quick start
 
@@ -31,13 +31,15 @@ uv run onboard_system/ai_powered_system/fish_tracker_and_counter/vessel_retained
 ```
 
 Flags:
-- `--video_path` Path to input video
-- `--model_path` Path to YOLO model `.pt`
+- `--video_path` Path to input video (default: `tests/dummy_data/fish_tracker_and_counter/test_video.mov`)
+- `--model_path` Path to YOLO model `.pt` (default: `fish_detector_model/baseline_model/baseline_fish_detector.pt`)
+- `--write_results_video` Add this flag if you want an annotated video saved
 - `--output_video_folder` Folder where annotated videos are saved (default: `tests/dummy_data/fish_tracker_and_counter/output/video`)
 - `--output_json_folder` Folder where JSON events are saved (default: `tests/dummy_data/fish_tracker_and_counter/output/catch_events`)
-- `--write_results_video` Add this flag if you want an annotated video saved
 - `--conf` Detection confidence threshold (default `0.30`)
 - `--iou` Intersection-over-Union threshold for non-maximum suppression (default `0.10`)
+- `--tracker_config` Path to tracker YAML (default BoT-SORT at `config/botsort.yaml`)
+- `--device` Compute device for Ultralytics: "cpu", "0"/0, "cuda:0", etc. (default `"0"`)
 
 ### 📦 Outputs
 
@@ -69,6 +71,7 @@ This means a fish labeled "DOL" (dolphinfish) was counted as IN at frame 69 of t
 ## 📁 Configuration
 
 The tracker settings are in `config/botsort.yaml`
+Override at runtime with `--tracker_config /path/to/your.yaml`.
 
 If tracking seems unstable, try tuning:
 
@@ -81,7 +84,7 @@ If tracking seems unstable, try tuning:
 ## 💡 Notes
 
 - By default, the tracker runs on GPU 0 (`device=0`). 
-  For CPU-only systems, switch this to `device='cpu'` in `utils/custom_object_counter.py` (expect slower runtime).
+  For CPU-only systems, run with `--device cpu`(slower runtime).
 
 - The counting line must be **manually placed along the edge of the vessel’s deck**.
   - In the provided `test_video`, the line is already set for its camera angle.
