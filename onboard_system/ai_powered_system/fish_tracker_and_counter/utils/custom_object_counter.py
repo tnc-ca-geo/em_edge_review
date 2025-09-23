@@ -1,3 +1,11 @@
+"""Custom Object Counter Module
+
+This module provides the CustomObjectCounter class, which extends the BaseObjectCounter
+to implement specific IN and OUT counting logic based on y-coordinate crossings
+in a video stream.
+"""
+
+
 import json
 import os
 from collections import Counter, defaultdict
@@ -8,13 +16,6 @@ from ultralytics.solutions import ObjectCounter as BaseObjectCounter
 from ultralytics.utils.plotting import Annotator, colors
 
 from logger import get_logger
-
-"""Custom Object Counter Module
-
-This module provides the CustomObjectCounter class, which extends the BaseObjectCounter
-to implement specific IN and OUT counting logic based on y-coordinate crossings
-in a video stream.
-"""
 
 DISAPPEARANCE_THRESHOLD = 30  # Allow up to 30 frames of disappearance before finalizing
 MIN_TRACK_LENGTH_THRESHOLD = 1 * 12  # Minimum number of frames to consider a track for counting
