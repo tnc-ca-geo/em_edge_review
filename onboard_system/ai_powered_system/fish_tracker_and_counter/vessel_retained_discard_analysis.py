@@ -82,35 +82,6 @@ def parse_args() -> argparse.Namespace:
     return args
 
 
-def initialize_counter(
-    model_path: str,
-    conf: float,
-    iou: float,
-    output_json_folder: str,
-    counting_region: List[Tuple[int, int]],
-    tracker_config: str = "onboard_system/ai_powered_system/fish_tracker_and_counter/config/botsort.yaml",
-    device: Union[str, int] = "0",
-) -> CustomObjectCounter:
-    """Initialize the CustomObjectCounter with specified parameters."""
-    logger.info("Initializing CustomObjectCounter...")
-    counter = CustomObjectCounter(
-        show=False,
-        region=counting_region,
-        model=model_path,
-        show_in=True,
-        show_out=True,
-        line_width=2,
-        tracker=tracker_config,
-        device=device,
-        persist=True,
-        agnostic_nms=True,
-        conf=conf,
-        iou=iou,
-        output_json_folder=output_json_folder,
-    )
-    return counter
-
-
 def count_fish_in_video(
     video_file: str,
     counter: CustomObjectCounter,
@@ -183,14 +154,21 @@ def main() -> None:
 
     logger.info(f"Counting region coordinates set to: {counting_region}")
 
-    counter = initialize_counter(
-        model_path=args.model_path,
+    logger.info("Initializing CustomObjectCounter...")
+    counter = CustomObjectCounter(
+        show=False,
+        region=counting_region,
+        model=args.model_path,
+        show_in=True,
+        show_out=True,
+        line_width=2,
+        tracker=args.tracker_config,
+        device=args.device,
+        persist=True,
+        agnostic_nms=True,
         conf=args.conf,
         iou=args.iou,
         output_json_folder=args.output_json_folder,
-        counting_region=counting_region,
-        tracker_config=args.tracker_config,
-        device=args.device,
     )
 
     count_fish_in_video(
