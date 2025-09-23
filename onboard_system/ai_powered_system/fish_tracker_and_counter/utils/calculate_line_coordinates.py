@@ -31,27 +31,6 @@ def get_video_resolution(video_file: str) -> Tuple[int, int, float]:
     return width, height, fps
 
 
-def get_video_resolution_remote(
-    remote_path: str, sftp: paramiko.SFTPClient, local_folder: str
-) -> Tuple[int, int, float]:
-    """Download a remote video, get its resolution/FPS, then delete it.
-
-    Args:
-        remote_path (str): The path to the video on the remote server.
-        sftp (paramiko.SFTPClient): The SFTP client to use for downloading the video.
-        local_folder (str): The local folder to save the downloaded video.
-
-    Returns:
-        tuple[int, int, float]: The width, height, and FPS of the video.
-    """
-    local_path = os.path.join(local_folder, os.path.basename(remote_path))
-    sftp.get(remote_path, local_path)
-    try:
-        return get_video_resolution(local_path)
-    finally:
-        os.remove(local_path)
-
-
 def calculate_coordinates(height: int, width: int) -> List[Tuple[int, int]]:
     """Calculate the coordinates for a line based on the video dimensions.
 
