@@ -39,7 +39,7 @@ Flags:
 - `--conf` Detection confidence threshold (default `0.30`)
 - `--iou` Intersection-over-Union threshold for non-maximum suppression (default `0.10`)
 - `--tracker_config` Path to tracker YAML (default BoT-SORT at `config/botsort.yaml`)
-- `--device` Compute device for Ultralytics: "cpu", "0"/0, "cuda:0", etc. (default `"0"`)
+- `--device` Specifies the device for inference (e.g., cpu, cuda:0 or 0) (default `"0"`)
 
 ### 📦 Outputs
 
@@ -80,6 +80,10 @@ If tracking seems unstable, try tuning:
 - `new_track_thresh` — threshold for starting a new track
 - `track_buffer` — how long to keep a track after it disappears
 - `match_thresh` — matching threshold for associations
+
+For a deeper explanation, see:
+- 📄 [BoT-SORT paper](https://arxiv.org/abs/2206.14651) — details the underlying algorithm  
+- 📘 [Ultralytics tracking docs](https://docs.ultralytics.com/modes/track/#tracker-arguments) — practical guidance on usage
 
 ## 💡 Notes
 
