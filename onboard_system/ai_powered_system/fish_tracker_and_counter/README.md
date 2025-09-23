@@ -21,17 +21,17 @@ Before running the scripts, ensure you have:
 
 ### ▶️ Run on a test video
 
-Try the included test clip:
+Try the included test clip (download it [here](https://github.com/user-attachments/assets/220d572c-adcc-4f01-aa8f-32b0d2c56112))
 
 ```bash
 uv run onboard_system/ai_powered_system/fish_tracker_and_counter/vessel_retained_discard_analysis.py \
-  --video_path tests/dummy_data/fish_tracker_and_counter/test_video.mov \
+  --video_path path/to/your/test_video.mov \
   --model_path fish_detector_model/baseline_model/baseline_fish_detector.pt \
   --write_results_video
 ```
 
 Flags:
-- `--video_path` Path to input video (default: `tests/dummy_data/fish_tracker_and_counter/test_video.mov`)
+- `--video_path` Path to input video (example: path/to/your/test_video.mov)
 - `--model_path` Path to YOLO model `.pt` (default: `fish_detector_model/baseline_model/baseline_fish_detector.pt`)
 - `--write_results_video` Add this flag if you want an annotated video saved
 - `--output_video_folder` Folder where annotated videos are saved (default: `tests/dummy_data/fish_tracker_and_counter/output/video`)

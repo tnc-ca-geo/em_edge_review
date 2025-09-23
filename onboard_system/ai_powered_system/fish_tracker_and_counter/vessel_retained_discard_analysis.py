@@ -23,7 +23,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--video_path",
         type=str,
-        default="tests/dummy_data/fish_tracker_and_counter/test_video.mov",
+        required=True,
         help="Path to the input video file.",
     )
     parser.add_argument(
