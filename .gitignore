@@ -2,6 +2,9 @@
 Finetune_fish_detector/
 Evaluation Results/
 
+# Ignore test outputs
+tests/dummy_data/fish_tracker_and_counter/output
+
 # Environments
 .env
 .venv
