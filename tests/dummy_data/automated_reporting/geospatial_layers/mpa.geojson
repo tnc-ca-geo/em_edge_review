@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "MPA_isla_del_coco",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "WDPAID": 170.0, "WDPA_PID": "170", "PA_DEF": "1", "NAME": "Isla del Coco", "ORIG_NAME": "Isla del Coco", "DESIG": "Parque Nacional", "DESIG_ENG": "National Park", "DESIG_TYPE": "National", "IUCN_CAT": "II", "INT_CRIT": "Not Applicable", "MARINE": "2", "REP_M_AREA": 54830.21187, "GIS_M_AREA": 54844.087018904997, "REP_AREA": 54853.52861, "GIS_AREA": 54844.161181401098, "NO_TAKE": "Not Reported", "NO_TK_AREA": 0.0, "STATUS": "Designated", "STATUS_YR": 2022, "GOV_TYPE": "Federal or national ministry or agency", "OWN_TYPE": "State", "MANG_AUTH": "Federal or national ministry or agency", "MANG_PLAN": "Not Reported", "VERIF": "State Verified", "METADATAID": 811, "SUB_LOC": "CR-P", "PARENT_ISO": "CRI", "ISO3": "CRI", "SUPP_INFO": "Not Applicable", "CONS_OBJ": "Not Applicable" }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -86.367012455999941, 6.237014644000055 ], [ -86.367016569999976, 4.529014729000039 ], [ -88.98701650299995, 4.529021043000057 ], [ -88.987012422999953, 6.237020962000031 ], [ -86.367012455999941, 6.237014644000055 ] ] ] ] } }
+]
+}

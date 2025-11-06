@@ -1,0 +1,1812 @@
+:root {
+    --tnc-green: #00703C;
+    --light-gray: #F4F4F4;
+    --border-color: rgba(11, 7, 35, 0.2);
+    --text-color: #000000;
+    --accent-color: #007bff;
+    --low-risk: #008000;
+    --medium-risk: #A48103;
+    --high-risk: #A40303;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #ffffff;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 144px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Header */
+.site-header {
+    background-color: var(--tnc-green);
+    color: white;
+    width: 100%;
+    padding: 60px 144px;
+}
+
+.header-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 68px;
+    min-width: 235px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.collaboration-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.partner {
+    display: flex;
+    padding: 9px 30px;
+    align-items: center;
+    gap: 15px;
+    border-radius: 100px;
+    background: rgba(11, 7, 35, 0.30);
+    margin-bottom: 6px;
+}
+
+.partner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.partner span {
+    color: white;
+    font-size: 20px;
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    margin: 6.5px 15px 6.5px 0;
+    letter-spacing: 0.29px;
+    white-space: nowrap;
+}
+
+.partner img {
+    height: max-content;
+    object-fit: contain;
+}
+
+/* Date and Title */
+.date-container {
+    margin: 10px 0 0 0;
+    color: black;
+    font-size: 22px;
+    font-family: Inter;
+    font-weight: 400;
+    line-height: 32px;
+    word-wrap: break-word;
+    display: flex;
+    align-items: center;
+}
+
+.date-icon {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.report-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 40px;
+    padding: 10px 0 0 0;
+    border-bottom: none;
+}
+
+.report-title {
+    color: #000;
+    font-family: Inter;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 72px;
+    margin-bottom: 0;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    margin-bottom: 0;
+    gap: 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    width: 100%;
+}
+
+.tab-link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.60);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    padding: 8px 0;
+    transition: all 0.2s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-link:hover {
+    color: var(--text-color);
+}
+
+.tab-link.active {
+    color: #000;
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.tab-link.active::after {
+    display: none;
+}
+
+/* Section Styling */
+.section {
+    width: 100%;
+    margin-bottom: 40px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+h2 {
+    color: #000;
+    font-family: Inter;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    margin-bottom: 50px;
+}
+
+#catch-sequence h2 {
+    margin-bottom: 14px;
+}
+
+/* Stats Cards */
+.stats-cards {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.stat-card {
+    background-color: var(--light-gray);
+    border-radius: 20px;
+    padding: 40px 30px;
+    flex: 1;
+}
+
+.stat-card h3 {
+    color: #000;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    letter-spacing: 0.293px;
+    margin-bottom: 6px;
+}
+
+.stat-card .description {
+    color: rgba(0, 0, 0, 0.60);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 20px;
+    min-height: 40px;
+}
+
+.stat-card .stat-value {
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 30px;
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(108, 108, 108, 0.08);
+}
+
+th {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 24px;
+    text-align: left;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+td {
+    color: var(--text-color);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+
+}
+
+/* Catch Sequence Table Specific Styles */
+#catch-sequence-table {
+    margin-top: 32px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: #FFF;
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#catch-sequence-table th:nth-child(1) { width: 26%; } /* Species */
+#catch-sequence-table th:nth-child(2) { width: 14%; } /* Event Type */
+#catch-sequence-table th:nth-child(3) { width: 14%; } /* Confidence */
+#catch-sequence-table th:nth-child(4) { width: 12%; } /* Time */
+#catch-sequence-table th:nth-child(5) { width: 34%; } /* Evidence */
+
+/* Header row height */
+#catch-sequence-table thead tr {
+    height: 70px;
+}
+
+/* Data rows height - taller to fit evidence frames */
+#catch-sequence-table tbody tr {
+    height: 140px;
+}
+
+#catch-sequence-table th {
+    text-align: center;
+    padding: 16px 20px;
+    background-color: #F4F4F4;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    vertical-align: middle;
+    position: relative;
+    white-space: nowrap;
+}
+
+#catch-sequence-table th .info-icon {
+    position: relative;
+    top: -1px;
+    margin-left: 4px;
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+/* Ensure the title and icon stay on same line */
+#catch-sequence-table th span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#catch-sequence-table td {
+    text-align: center;
+    padding: 20px 16px;
+    vertical-align: middle;
+}
+
+/* Adjust specifically the species column for better text alignment */
+#catch-sequence-table th:first-child {
+    text-align: center;
+}
+
+#catch-sequence-table td:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+#catch-sequence-table td:first-child img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+#catch-sequence-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Event Type Badge in Table */
+#catch-sequence-table .event-type {
+    display: inline-flex;
+    padding: 6px 18px;
+    align-items: center;
+    border-radius: 16px;
+    background: #F2F4F7;
+    color: #344054;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+/* Evidence Thumbnail in Table */
+#catch-sequence-table .evidence-thumb {
+    width: 180px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: bottom;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+#catch-sequence-table .evidence-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Info Icon in Table */
+#catch-sequence-table .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #667085;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    cursor: help;
+    transition: color 0.2s, background-color 0.2s;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+/* Table Row Hover and Selection */
+#catch-sequence-table tbody tr:hover {
+    background: #F9FAFB;
+}
+
+#catch-sequence-table .highlighted-row {
+    background: #F9FAFB;
+}
+
+#catch-sequence-table .highlighted-row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: #00703C;
+}
+
+/* Export Buttons */
+.export-buttons {
+    display: flex;
+    gap: 14px;
+    margin: 0 0 50px 0;
+}
+
+.export-buttons button {
+    display: inline-flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    border: 1px solid #000;
+    background: #FFF;
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.export-buttons button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Evidence Frame Styles */
+.evidence-thumb {
+    max-width: 180px;
+    max-height: 100px;
+    cursor: zoom-in;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: bottom;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.evidence-thumb:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-color: var(--tnc-green);
+}
+
+.evidence-thumb::after {
+    content: '🔍';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    font-size: 20px;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.evidence-thumb:hover::after {
+    opacity: 0.7;
+}
+
+/* Event Type Badge */
+.event-type {
+    display: inline-flex;
+    padding: 4px 12px;
+    align-items: center;
+    border-radius: 100px;
+    background: rgba(11, 7, 35, 0.05);
+    color: rgba(11, 7, 35, 0.7);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+/* Highlighted Row */
+.highlighted-row {
+    background-color: rgba(253, 224, 71, 0.3) !important;
+    position: relative;
+}
+
+.highlighted-row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #FFC107;
+}
+
+/* Modal for Evidence Frames */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    margin: 2% auto;
+    border: 1px solid #888;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#modalCaption {
+    margin: 15px auto;
+    max-width: 80%;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    line-height: 1.5;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 1001;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#catch-sequence-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Risk indicators */
+.low-risk {
+    color: var(--low-risk);
+    background-color: rgba(0, 128, 0, 0.1);
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.medium-risk {
+    color: var(--medium-risk);
+    background-color: rgba(243, 190, 0, 0.1);
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.high-risk {
+    color: var(--high-risk);
+    background-color: rgba(248, 0, 0, 0.1);
+    padding: 5px 15px;
+    border-radius: 100px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+/* Buttons */
+button {
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 100px;
+    border: 1px solid #000000;
+    background: #FFF;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.export-buttons {
+    display: flex;
+    gap: 14px;
+    margin: 0 0 50px 0;
+}
+
+/* Info icon styling */
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #667085;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    margin-left: 6px;
+    cursor: help;
+    transition: color 0.2s, background-color 0.2s;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.info-icon:hover {
+    color: var(--tnc-green);
+}
+
+.risk-component h4 .info-icon {
+    font-size: 15px;
+    color: #98A2B3;
+}
+
+.risk-component h4 .info-icon:hover {
+    color: #667085;
+}
+
+/* Risk status badges */
+.risk-value.high {
+    color: var(--high-risk);
+}
+
+.risk-value.medium {
+    color: var(--medium-risk);
+}
+
+.risk-value.low {
+    color: var(--low-risk);
+}
+
+.risk-value.yes {
+    color: var(--high-risk);
+    font-weight: 700;
+}
+
+.risk-value.no {
+    color: var(--low-risk);
+}
+
+/* Species label */
+.illegal-species {
+    color: var(--high-risk);
+    font-weight: bold;
+}
+
+.normal-species {
+    color: inherit;
+}
+
+/* Dividers */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 40px 0;
+}
+
+.soft-divider {
+    border: none;
+    border-top: 1px dashed var(--border-color);
+    margin: 20px 0;
+}
+
+.image-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.image-row img {
+    max-width: 45%;
+    height: auto;
+    display: block;
+}
+
+/* Enhanced section header - Figma style */
+.section-header {
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 133.333% */
+    margin-bottom: 0;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+}
+
+/* Remove green underline */
+.section-header::after {
+    content: none;
+}
+
+/* Map container specific styles */
+#map-container {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+#map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#gps-locations {
+    height: auto;
+    overflow: hidden;
+}
+
+/* Additional Information section specific margin */
+#additional-info.section {
+    margin-top: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 1412px) {
+    /* TNC Logo */
+    .logo img {
+        height: 55px;
+        min-width: 190px;
+    }
+
+    /* Partner section */
+    .partner {
+        padding: 9px 20px;
+        background: rgba(11, 7, 35, 0.30);
+    }
+
+    .partner span {
+        font-size: 16px;
+        margin: 0 5px 0 0;
+        display: block; /* Ensure text remains visible */
+    }
+
+    .partner-content {
+        justify-content: center;
+        gap: 5px;
+        width: auto; /* Allow content to take natural width */
+        padding: 4px 7px;
+    }
+
+    .partner img {
+        min-height: 30px;
+        margin: 0;
+    }
+
+    /* Header adjustments */
+    .site-header {
+        padding: 40px 60px;
+    }
+
+    .header-container {
+        padding: 0;
+    }
+
+    .container {
+        padding: 30px 72px;
+    }
+
+    /* Title and date adjustments */
+    .report-title {
+        font-size: 48px;
+        line-height: 56px;
+    }
+
+    .date-container {
+        font-size: 18px;
+    }
+
+    /* Stats cards adjustments */
+    .stat-card {
+        padding: 30px 20px;
+    }
+
+    .stat-card h3 {
+        font-size: 20px;
+    }
+
+    .stat-card .description {
+        font-size: 16px;
+    }
+
+    .stat-card .stat-value {
+        font-size: 22px;
+    }
+
+    /* Table adjustments */
+    table th,
+    table td,
+    #catch-sequence-table th,
+    #catch-sequence-table td {
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+
+    /* Section headers */
+    h2 {
+        font-size: 30px;
+        line-height: 36px;
+        margin-bottom: 40px;
+    }
+
+    /* Risk indicators */
+    .low-risk,
+    .medium-risk,
+    .high-risk {
+        font-size: 16px;
+        padding: 4px 12px;
+    }
+
+    /* Map container */
+    #map-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Header adjustments */
+    .site-header {
+        padding: 30px 48px;
+    }
+
+    .header-container {
+        padding: 0;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 45px;
+        min-width: 155px;
+    }
+
+    .partner {
+        padding: 8px 12px;
+    }
+
+    .partner span {
+        font-size: 14px;
+        white-space: normal;
+        display: block;
+        line-height: 16px;
+    }
+
+    .partner img {
+        height: 26px;
+        max-width: 100px;
+    }
+
+    .container {
+        padding: 24px 48px;
+    }
+
+    /* Table adjustments to prevent horizontal scroll */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 20px 0;
+        border-radius: 12px;
+    }
+
+    /* Wrap all tables in scrollable container */
+    table {
+        margin: 0;
+        white-space: nowrap;
+    }
+
+    /* Allow certain columns to wrap text */
+    td:first-child,
+    th:first-child {
+        white-space: normal;
+        min-width: 200px;
+    }
+
+    /* Adjust tabs for better mobile display */
+    .tabs {
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-link {
+        white-space: nowrap;
+    }
+
+    /* Make stats cards stack */
+    .stats-cards {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .report-title {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .stats-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stat-card {
+        width: 100%;
+    }
+
+    .tabs {
+        gap: 24px;
+        flex-wrap: wrap;
+    }
+
+    .tab-link {
+        font-size: 16px;
+    }
+
+    /* Adjust table text size */
+    table th,
+    table td {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    /* Make export buttons stack */
+    .export-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .export-buttons button {
+        width: 100%;
+    }
+
+    /* Adjust evidence thumbnails */
+    .evidence-thumb {
+        max-width: 100px;
+        max-height: 80px;
+    }
+
+    /* Ensure modal content fits screen */
+    .modal-content {
+        max-width: 90%;
+        max-height: 80vh;
+    }
+
+    /* Responsive styles for catch sequence table */
+    #catch-sequence-table th {
+        font-size: 16px;
+        padding: 12px 10px;
+        white-space: normal;
+        line-height: 22px;
+    }
+
+    #catch-sequence-table .info-icon {
+        display: block;
+        margin: 5px auto 0;
+    }
+
+    #catch-sequence-table tbody tr {
+        height: 120px;
+    }
+
+    #catch-sequence-table .evidence-thumb {
+        width: 150px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        height: 40px;
+        min-width: 138px;
+    }
+
+    .partner {
+        padding: 6px 10px;
+    }
+
+    .partner span {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+    .partner img {
+        height: 20px;
+        max-width: 80px;
+    }
+
+    /* Header adjustments */
+    .site-header {
+        padding: 20px 24px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .collaboration-container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .container {
+        padding: 20px 24px;
+    }
+
+    .report-title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .date-container {
+        font-size: 16px;
+    }
+
+    .tabs {
+        gap: 16px;
+    }
+
+    .tab-link {
+        font-size: 14px;
+        padding: 6px 0;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 32px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card h3 {
+        font-size: 18px;
+    }
+
+    .stat-card .description {
+        font-size: 14px;
+    }
+
+    .stat-card .stat-value {
+        font-size: 20px;
+    }
+
+    /* Make stats cards stack */
+    .stats-cards {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Make export buttons stack */
+    .export-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .export-buttons button {
+        width: 100%;
+    }
+
+    /* Adjust evidence thumbnails */
+    .evidence-thumb {
+        max-width: 80px;
+        max-height: 60px;
+    }
+
+    /* Ensure modal content fits screen */
+    .modal-content {
+        max-width: 90%;
+        max-height: 80vh;
+    }
+
+    /* Adjust column widths for mobile */
+    #catch-sequence-table th:nth-child(1),
+    #catch-sequence-table td:nth-child(1) { width: 30%; } /* Species */
+    #catch-sequence-table th:nth-child(2),
+    #catch-sequence-table td:nth-child(2) { width: 14%; } /* Event Type */
+    #catch-sequence-table th:nth-child(3),
+    #catch-sequence-table td:nth-child(3) { width: 12%; } /* Confidence */
+    #catch-sequence-table th:nth-child(4),
+    #catch-sequence-table td:nth-child(4) { width: 14%; } /* Time */
+    #catch-sequence-table th:nth-child(5),
+    #catch-sequence-table td:nth-child(5) { width: 30%; } /* Evidence */
+
+    /* Wrapper for table to enable horizontal scrolling on small screens */
+    #catch-sequence {
+        overflow-x: auto;
+        margin: 0 -24px; /* Negative margin to counteract container padding */
+        padding: 0 24px; /* Add padding back for visual alignment */
+    }
+
+    #catch-sequence-table {
+        width: 100%;
+        min-width: 650px; /* Minimum width to ensure readability */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Header adjustments */
+    .site-header {
+        padding: 16px;
+    }
+
+    .header-container {
+        gap: 10px;
+    }
+
+    .logo img {
+        height: 34px;
+        min-width: 120px;
+    }
+
+    .partner {
+        padding: 5px 8px;
+    }
+
+    .partner span {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .partner img {
+        height: 16px;
+        max-width: 70px;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    /* Further reduce text sizes */
+    .report-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .date-container {
+        font-size: 14px;
+    }
+
+    /* Adjust table display */
+    td:first-child,
+    th:first-child {
+        min-width: 150px;
+    }
+
+    /* Make risk indicators more compact */
+    .low-risk,
+    .medium-risk,
+    .high-risk {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+
+    /* Adjust table display */
+    td:first-child,
+    th:first-child {
+        min-width: 150px;
+    }
+
+    /* Make the catch sequence table scroll horizontally on very small screens */
+    #catch-sequence {
+        overflow-x: auto;
+    }
+
+    #catch-sequence-table {
+        min-width: 480px; /* Ensure table doesn't shrink too much */
+    }
+
+    #catch-sequence-table th {
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+
+    #catch-sequence-table td {
+        padding: 10px 4px;
+        font-size: 12px;
+    }
+
+    #catch-sequence-table .evidence-thumb {
+        width: 100px;
+        height: 70px;
+    }
+
+    #catch-sequence {
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+
+    #catch-sequence-table {
+        min-width: 480px;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+section[id] {
+    scroll-margin-top: 20px;
+}
+
+/* Risk Score table specific styles */
+#risk-score table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#risk-score table th {
+    background: #F4F4F4;
+    padding: 18px 24px;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: center;
+    border-bottom: 1px solid rgba(11, 7, 35, 0.2);
+}
+
+#risk-score table td {
+    padding: 16px 24px;
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    border-bottom: 1px solid rgba(11, 7, 35, 0.2);
+    text-align: center;
+}
+
+#risk-score table td:first-child {
+    font-weight: 400;
+}
+
+#risk-score table td.risk-feature {
+    text-align: left;
+    padding-left: 48px;
+    color: rgba(0, 0, 0, 0.85);
+}
+
+#risk-score table tr.risk-section td:first-child {
+    background: #F4F4F4;
+}
+
+#risk-score table tr.risk-section td {
+    border-top: 1px solid rgba(11, 7, 35, 0.2);
+}
+
+#risk-score table tr.gps-note {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    font-style: italic;
+}
+
+.section-content {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+/* Risk Components Container - Improved design */
+.risk-components-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 32px;
+}
+
+@media (min-width: 1200px) {
+    .risk-components-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Componentes de Riesgo - Nuevo diseño */
+.risk-component {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #EAECF0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.risk-component:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.risk-component h4 {
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    padding: 20px 24px;
+    margin: 0;
+    border-bottom: 1px solid #EAECF0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.risk-table {
+    box-shadow: none;
+    margin: 0;
+    border: none;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.risk-table tbody tr {
+    border-bottom: 1px solid #EAECF0;
+    transition: background-color 0.15s;
+}
+
+.risk-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.risk-table tbody tr:hover {
+    background-color: #F9FAFB;
+}
+
+.risk-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #475467;
+    font-weight: 500;
+    padding: 14px 24px !important;
+    text-align: left !important;
+    line-height: 20px;
+}
+
+.risk-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #101828;
+    font-weight: 600;
+    text-align: right !important;
+    padding: 14px 24px !important;
+    line-height: 20px;
+}
+
+
+.gps-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #475467;
+    font-style: italic;
+    text-align: center;
+    padding: 14px 24px;
+    background: #F9FAFB;
+    border-top: 1px solid #EAECF0;
+    font-weight: 500;
+}
+
+/* Risk Component Tables - Improved */
+.risk-component {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.10);
+    border: 1px solid var(--border-color);
+}
+
+.risk-component h4 {
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 16px 24px;
+    margin: 0;
+    background: #F4F4F4;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.risk-component table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    background: #FFF;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.risk-component table td {
+    padding: 14px 24px;
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+    height: auto;
+}
+
+.risk-component table td:first-child {
+    width: 65%;
+    text-align: left;
+    padding-left: 24px;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+}
+
+.risk-component table td:last-child {
+    width: 35%;
+    text-align: right;
+    padding-right: 24px;
+    font-weight: 600;
+}
+
+.risk-component table tr:last-child td {
+    border-bottom: none;
+}
+
+.risk-component table tr:hover {
+    background-color: rgba(11, 7, 35, 0.02);
+}
+
+.gps-note {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    font-style: italic;
+    text-align: center;
+    padding: 12px 24px;
+    background: #F4F4F4;
+    border-top: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+/* Breakdown table styles */
+.breakdown-section {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.breakdown-section:first-child {
+    margin-top: 0;
+}
+
+.breakdown-subtitle {
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px; /* 133.333% */
+    margin: 0px 0 0px 0;
+    padding-left: 0;
+}
+
+.breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 0;
+    table-layout: fixed;
+}
+
+.breakdown-table thead {
+    background-color: #F4F4F4;
+}
+
+.breakdown-table th {
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: left;
+    padding: 12px 24px;
+}
+
+.breakdown-table th:first-child {
+    width: 50%;
+    text-align: left;
+}
+
+.breakdown-table th:not(:first-child) {
+    width: 25%;
+    text-align: center;
+}
+
+.breakdown-table td {
+    padding: 16px 24px;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: #000;
+    border-bottom: 1px solid rgba(11, 7, 35, 0.2);
+}
+
+.breakdown-table td:first-child {
+    width: 60%;
+    text-align: left;
+}
+
+.breakdown-table td:not(:first-child) {
+    width: 20%;
+    text-align: center;
+}
+
+.icon-small {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.catch-breakdown-title {
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 40px 0 16px 0;
+}
+
+/* Risk Score Container - Nuevo diseño como en Figma */
+.risk-score-container {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 40px;
+    border-radius: 0;
+    overflow: hidden;
+    background-color: #F9FAFB;
+    box-shadow: none;
+    border: none;
+}
+
+.risk-score-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+.risk-score-table th {
+    background-color: #F4F4F4;
+    padding: 10px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #101828;
+    text-align: left;
+    border-bottom: 1px solid #EAECF0;
+}
+
+.risk-score-table td {
+    padding: 12px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    border-bottom: 1px solid #EAECF0;
+    vertical-align: middle;
+    background-color: white;
+}
+
+/* Add spacing between risk sections */
+.risk-score-table tr.risk-section:not(:first-child) td {
+    border-top: 4px solid #FFFFFF;
+}
+
+.risk-score-table .risk-type {
+    background-color: #F9FAFB !important;
+    font-weight: 500;
+    color: #101828;
+    text-align: left;
+    padding-left: 16px;
+    border-right: 1px solid #EAECF0;
+    width: 22%;
+}
+
+.risk-score-table .risk-type .risk-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    color: #667085;
+    margin-top: 8px;
+    display: block;
+}
+
+.risk-score-table .risk-feature {
+    color: #475467;
+    font-weight: 400;
+}
+
+.risk-score-table .risk-value {
+    text-align: right;
+    font-weight: 600;
+    color: #101828;
+}
+
+
+.risk-score-table .risk-section td {
+    border-top: none;
+}
+
+/* Definir anchos de columnas */
+.risk-score-table .risk-column {
+    width: 22%;
+}
+
+.risk-score-table .feature-column {
+    width: 56%;
+}
+
+.risk-score-table .value-column {
+    width: 22%;
+    text-align: right;
+}
+
+.risk-score-table .risk-feature {
+    color: #475467;
+    font-weight: 400;
+    width: 56%;
+}
+
+.risk-score-table .risk-value {
+    text-align: right;
+    font-weight: 500;
+    color: #101828;
+    width: 22%;
+}
+
+#catch-sequence-table td:last-child {
+    color: #000;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px; /* 175% */
+    word-break: break-word;
+    max-width: 150px;
+    white-space: normal;
+}
+
+/* Responsive styling for the catch sequence table */
+@media (max-width: 1100px) {
+    #catch-sequence-table .evidence-thumb {
+        width: 200px;
+        height: 150px;
+    }
+
+    #catch-sequence-table tr {
+        height: 170px;
+    }
+}
+
+@media (max-width: 768px) {
+    #catch-sequence-table .evidence-thumb {
+        width: 150px;
+        height: 120px;
+    }
+
+    #catch-sequence-table tr {
+        height: 140px;
+    }
+
+    #catch-sequence-table th:nth-child(5) { width: 30%; }
+}
+
+/* Additional fixes to prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Ensure tables don't force container width */
+.table-container {
+    max-width: 100%;
+}
+
+/* Fix for nested containers */
+.section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure images don't cause overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Additional fixes to prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Ensure tables don't force container width */
+.table-container {
+    max-width: 100%;
+}
+
+/* Fix for nested containers */
+.section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ensure images don't cause overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}

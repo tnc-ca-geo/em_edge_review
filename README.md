@@ -46,6 +46,27 @@ Outputs include:
 
 > 📘 See `onboard_system/ai_powered_system/fish_tracker_and_counter/README.md` for usage instructions and details on adjusting the counting line for your vessel’s camera setup.
 
+### `onboard_system/automated_reporting/` - Automated Daily Report & Risk Scoring
+
+This directory contains the components used to generate a daily summary of fishing activity from the AI system’s outputs. It combines catch detections, GPS tracks, and e-log data into a clear, shareable report designed to provide actionable insight to fishery managers.
+
+The reporting system includes:
+- Daily Catch Report, featuring:
+  - Total retained and discarded catch
+  - A timestamped catch sequence with species identification and evidence frames
+  - Catch breakdowns by group, subgroup, and species
+  - A map showing the location of catch events
+- Daily Risk Score, highlighting potential compliance or operational concerns, including:
+  - Retention of prohibited species
+  - Fishing near or inside restricted areas
+  - Potential under-reporting of catch
+  - Operational data gaps (e.g., missing GPS or video)
+
+Outputs are provided as:
+- A human-readable HTML report
+- A structured JSON summary for further analysis
+
+> 📘 See `onboard_system/automated_reporting/README.md` for setup instructions and guidance on customizing reporting and risk scoring for your fishery.
 
 ## 🌐 Project Page
 

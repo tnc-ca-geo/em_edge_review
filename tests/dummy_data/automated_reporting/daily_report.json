@@ -1,0 +1,488 @@
+{
+    "date": "2025-03-26",
+    "total_counts": {
+        "label": "Catches",
+        "RETAINED": 24,
+        "VESSEL_DISCARD": 1,
+        "WATER_DISCARD": 4
+    },
+    "counts_by_group": [
+        {
+            "label": "ray",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        },
+        {
+            "label": "fish",
+            "RETAINED": 24,
+            "VESSEL_DISCARD": 1,
+            "WATER_DISCARD": 0
+        },
+        {
+            "label": "turtle",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        }
+    ],
+    "counts_by_group_subcategory": [
+        {
+            "label": "ray",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        },
+        {
+            "label": "fish-other",
+            "RETAINED": 8,
+            "VESSEL_DISCARD": 1,
+            "WATER_DISCARD": 0
+        },
+        {
+            "label": "tuna",
+            "RETAINED": 7,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "label": "turtle",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        },
+        {
+            "label": "mahi",
+            "RETAINED": 5,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "label": "swordfish",
+            "RETAINED": 3,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "label": "marlin",
+            "RETAINED": 1,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        }
+    ],
+    "counts_by_species": [
+        {
+            "fao_code": "PLS",
+            "common_name": "Pelagic stingray",
+            "scientific_name": "Pteroplatytrygon violacea",
+            "iucn_category": "LC",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        },
+        {
+            "fao_code": "SFA",
+            "common_name": "Indo-Pacific sailfish",
+            "scientific_name": "Istiophorus platypterus",
+            "iucn_category": "VU",
+            "RETAINED": 8,
+            "VESSEL_DISCARD": 1,
+            "WATER_DISCARD": 0
+        },
+        {
+            "fao_code": "YFT",
+            "common_name": "Yellowfin tuna",
+            "scientific_name": "Thunnus albacares",
+            "iucn_category": "LC",
+            "RETAINED": 7,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "fao_code": "TTX",
+            "common_name": "Turtles and shelled relatives",
+            "scientific_name": "Testudinata",
+            "iucn_category": "CR",
+            "RETAINED": 0,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 2
+        },
+        {
+            "fao_code": "DOL",
+            "common_name": "Common dolphinfish",
+            "scientific_name": "Coryphaena hippurus",
+            "iucn_category": "LC",
+            "RETAINED": 5,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "fao_code": "SWO",
+            "common_name": "Swordfish",
+            "scientific_name": "Xiphias gladius",
+            "iucn_category": "NT",
+            "RETAINED": 3,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        },
+        {
+            "fao_code": "BUM",
+            "common_name": "Blue marlin",
+            "scientific_name": "Makaira nigricans",
+            "iucn_category": "VU",
+            "RETAINED": 1,
+            "VESSEL_DISCARD": 0,
+            "WATER_DISCARD": 0
+        }
+    ],
+    "catch_sequence": [
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8607964768012365,
+            "video_filename": "boat_cam1_20250326-092500_1080px12fps750kbps",
+            "frame_number": 197,
+            "estimated_catch_time": "2025-03-26T03:25:48-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8707964768012365,
+            "video_filename": "boat_cam1_20250326-100500_1080px12fps750kbps",
+            "frame_number": 576,
+            "estimated_catch_time": "2025-03-26T04:05:48-06:00"
+        },
+        {
+            "label": "DOL",
+            "scientific_name": "Coryphaena hippurus",
+            "name_en": "Common dolphinfish",
+            "name_es": "Lampuga",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.6902698236207168,
+            "video_filename": "boat_cam1_20250326-110500_1080px12fps750kbps",
+            "frame_number": 3223,
+            "estimated_catch_time": "2025-03-26T05:09:28.583333-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.848748524983724,
+            "video_filename": "boat_cam1_20250326-110959_1080px12fps750kbps",
+            "frame_number": 2312,
+            "estimated_catch_time": "2025-03-26T05:13:11.666667-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8635236714035273,
+            "video_filename": "boat_cam1_20250326-112000_1080px12fps750kbps",
+            "frame_number": 2822,
+            "estimated_catch_time": "2025-03-26T05:23:55.166667-06:00"
+        },
+        {
+            "label": "DOL",
+            "scientific_name": "Coryphaena hippurus",
+            "name_en": "Common dolphinfish",
+            "name_es": "Lampuga",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.5176261821140845,
+            "video_filename": "boat_cam1_20250326-112500_1080px12fps750kbps",
+            "frame_number": 1394,
+            "estimated_catch_time": "2025-03-26T05:26:56.166667-06:00"
+        },
+        {
+            "label": "BUM",
+            "scientific_name": "Makaira nigricans",
+            "name_en": "Blue marlin",
+            "name_es": "Aguja azul",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8234008446335792,
+            "video_filename": "boat_cam1_20250326-113000_1080px12fps750kbps",
+            "frame_number": 2953,
+            "estimated_catch_time": "2025-03-26T05:34:06.083333-06:00"
+        },
+        {
+            "label": "DOL",
+            "scientific_name": "Coryphaena hippurus",
+            "name_en": "Common dolphinfish",
+            "name_es": "Lampuga",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.836803104231755,
+            "video_filename": "boat_cam1_20250326-114000_1080px12fps750kbps",
+            "frame_number": 2590,
+            "estimated_catch_time": "2025-03-26T05:43:35.833333-06:00"
+        },
+        {
+            "label": "DOL",
+            "scientific_name": "Coryphaena hippurus",
+            "name_en": "Common dolphinfish",
+            "name_es": "Lampuga",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.5404058780572186,
+            "video_filename": "boat_cam1_20250326-114500_1080px12fps750kbps",
+            "frame_number": 1207,
+            "estimated_catch_time": "2025-03-26T05:46:40.583333-06:00"
+        },
+        {
+            "label": "DOL",
+            "scientific_name": "Coryphaena hippurus",
+            "name_en": "Common dolphinfish",
+            "name_es": "Lampuga",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.7492832627147437,
+            "video_filename": "boat_cam1_20250326-114500_1080px12fps750kbps",
+            "frame_number": 2556,
+            "estimated_catch_time": "2025-03-26T05:48:33-06:00"
+        },
+        {
+            "label": "PLS",
+            "scientific_name": "Pteroplatytrygon violacea",
+            "name_en": "Pelagic stingray",
+            "name_es": "Raya-l\u00e1tigo violeta",
+            "illegal": true,
+            "event_type": "WATER_DISCARD",
+            "conf_score": 0.715346145297065,
+            "video_filename": "boat_cam1_20250326-120000_1080px12fps750kbps",
+            "frame_number": 2770,
+            "estimated_catch_time": "2025-03-26T06:03:50.833333-06:00"
+        },
+        {
+            "label": "PLS",
+            "scientific_name": "Pteroplatytrygon violacea",
+            "name_en": "Pelagic stingray",
+            "name_es": "Raya-l\u00e1tigo violeta",
+            "illegal": true,
+            "event_type": "WATER_DISCARD",
+            "conf_score": 0.7996844059477249,
+            "video_filename": "boat_cam1_20250326-120000_1080px12fps750kbps",
+            "frame_number": 2956,
+            "estimated_catch_time": "2025-03-26T06:04:06.333333-06:00"
+        },
+        {
+            "label": "TTX",
+            "scientific_name": "Testudinata",
+            "name_en": "Turtles and shelled relatives",
+            "name_es": "Tortugas y parientes con caparaz\u00f3n",
+            "illegal": true,
+            "event_type": "WATER_DISCARD",
+            "conf_score": 0.6109887229708525,
+            "video_filename": "boat_cam1_20250326-120000_1080px12fps750kbps",
+            "frame_number": 3067,
+            "estimated_catch_time": "2025-03-26T06:04:15.583333-06:00"
+        },
+        {
+            "label": "TTX",
+            "scientific_name": "Testudinata",
+            "name_en": "Turtles and shelled relatives",
+            "name_es": "Tortugas y parientes con caparaz\u00f3n",
+            "illegal": true,
+            "event_type": "WATER_DISCARD",
+            "conf_score": 0.6851283740997315,
+            "video_filename": "boat_cam1_20250326-120000_1080px12fps750kbps",
+            "frame_number": 3188,
+            "estimated_catch_time": "2025-03-26T06:04:25.666667-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.6645725814328678,
+            "video_filename": "boat_cam1_20250326-122500_1080px12fps750kbps",
+            "frame_number": 2580,
+            "estimated_catch_time": "2025-03-26T06:28:35-06:00"
+        },
+        {
+            "label": "SWO",
+            "scientific_name": "Xiphias gladius",
+            "name_en": "Swordfish",
+            "name_es": "Pez espada",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.6795518095294635,
+            "video_filename": "boat_cam1_20250326-123000_1080px12fps750kbps",
+            "frame_number": 2244,
+            "estimated_catch_time": "2025-03-26T06:33:07-06:00"
+        },
+        {
+            "label": "SWO",
+            "scientific_name": "Xiphias gladius",
+            "name_en": "Swordfish",
+            "name_es": "Pez espada",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.5325901336967945,
+            "video_filename": "boat_cam1_20250326-123500_1080px12fps750kbps",
+            "frame_number": 2846,
+            "estimated_catch_time": "2025-03-26T06:38:57.166667-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.7393920015205037,
+            "video_filename": "boat_cam1_20250326-145500_1080px12fps750kbps",
+            "frame_number": 70,
+            "estimated_catch_time": "2025-03-26T08:55:05.833333-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.7220567652583122,
+            "video_filename": "boat_cam1_20250326-145500_1080px12fps750kbps",
+            "frame_number": 2580,
+            "estimated_catch_time": "2025-03-26T08:58:35-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.818203129991889,
+            "video_filename": "boat_cam1_20250326-145500_1080px12fps750kbps",
+            "frame_number": 3512,
+            "estimated_catch_time": "2025-03-26T08:59:52.666667-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8188525710254908,
+            "video_filename": "boat_cam1_20250326-150000_1080px12fps750kbps",
+            "frame_number": 2857,
+            "estimated_catch_time": "2025-03-26T09:03:58.083333-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.7826597291976214,
+            "video_filename": "boat_cam1_20250326-150500_1080px12fps750kbps",
+            "frame_number": 1337,
+            "estimated_catch_time": "2025-03-26T09:06:51.416667-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8121473517268896,
+            "video_filename": "boat_cam1_20250326-150500_1080px12fps750kbps",
+            "frame_number": 3332,
+            "estimated_catch_time": "2025-03-26T09:09:37.666667-06:00"
+        },
+        {
+            "label": "SWO",
+            "scientific_name": "Xiphias gladius",
+            "name_en": "Swordfish",
+            "name_es": "Pez espada",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.7287394410620133,
+            "video_filename": "boat_cam1_20250326-152500_1080px12fps750kbps",
+            "frame_number": 769,
+            "estimated_catch_time": "2025-03-26T09:26:04.083333-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8748212397098541,
+            "video_filename": "boat_cam1_20250326-153000_1080px12fps750kbps",
+            "frame_number": 305,
+            "estimated_catch_time": "2025-03-26T09:30:25.416667-06:00"
+        },
+        {
+            "label": "YFT",
+            "scientific_name": "Thunnus albacares",
+            "name_en": "Yellowfin tuna",
+            "name_es": "Rabil",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8103840012103319,
+            "video_filename": "boat_cam1_20250326-153000_1080px12fps750kbps",
+            "frame_number": 948,
+            "estimated_catch_time": "2025-03-26T09:31:19-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "VESSEL_DISCARD",
+            "conf_score": 0.4570551476130883,
+            "video_filename": "boat_cam1_20250326-155000_1080px12fps750kbps",
+            "frame_number": 2522,
+            "estimated_catch_time": "2025-03-26T09:53:30.166667-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8388003585239251,
+            "video_filename": "boat_cam1_20250326-160000_1080px12fps750kbps",
+            "frame_number": 1813,
+            "estimated_catch_time": "2025-03-26T10:02:31.083333-06:00"
+        },
+        {
+            "label": "SFA",
+            "scientific_name": "Istiophorus platypterus",
+            "name_en": "Indo-Pacific sailfish",
+            "name_es": "Pez vela del Indo-Pac\u00edfico",
+            "illegal": false,
+            "event_type": "RETAINED",
+            "conf_score": 0.8489518822481235,
+            "video_filename": "boat_cam1_20250326-161500_1080px12fps750kbps",
+            "frame_number": 3189,
+            "estimated_catch_time": "2025-03-26T10:19:25.750000-06:00"
+        }
+    ]
+}
