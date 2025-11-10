@@ -94,3 +94,59 @@ To get started with the project, follow these steps:
     ```
 
 3. Create a `.env` file from the provided `.env.template`. Remember to replace all placeholder values with actual values.
+
+## 🐳 Docker Deployment
+
+For production deployment or containerized environments, you can use Docker to run the system components.
+
+### Prerequisites
+
+- Docker and Docker Compose installed on your system
+- Raw video files placed in the `./videos` directory
+- Model weights in `./fish_detector_model/baseline_model/`
+
+### Building the Docker Image
+
+Build the container image from the root directory:
+```bash
+docker compose build
+```
+
+This creates the `ai-powered-system:latest` image with all dependencies installed.
+
+### Running the System
+
+The system provides two main services that can be run independently:
+
+#### 1. Fish Tracking & Counting
+
+Process videos to detect, track, and count fish:
+```bash
+docker compose run --rm inference
+```
+
+This will:
+- Process videos from `./videos/` directory
+- Use the model at `./fish_detector_model/baseline_model/baseline_fish_detector.pt`
+- Save annotated videos to `./tests/dummy_data/fish_tracker_and_counter/output/video/`
+- Save catch event JSONs to `./tests/dummy_data/fish_tracker_and_counter/output/catch_events/`
+
+#### 2. Daily Report Generation
+
+Generate the automated daily report:
+```bash
+docker compose run --rm reporting
+```
+
+This will:
+- Process catch events from the inference output
+- Generate HTML and JSON reports in `./tests/dummy_data/fish_tracker_and_counter/output/daily_report/`
+
+### Customizing for Your Deployment
+
+Edit `docker-compose.yml` to adjust:
+- **Video input path:** Change `./videos` to your video directory
+- **Output paths:** Modify volume mounts to match your preferred locations
+- **Model path:** Update if using a custom trained model
+
+> 💡 The Docker image uses CPU-only PyTorch by default. For GPU acceleration, modify the Dockerfile to install CUDA-enabled PyTorch and ensure the NVIDIA Container Toolkit is installed on your host system.
