@@ -7,7 +7,6 @@ requires-python = ">=3.12"
 dependencies = [
     "lapx>=0.5.12",
     "mlflow>=3.2.0",
-    "paramiko>=4.0.0",
     "python-dotenv>=1.1.1",
     "shapely>=2.1.1",
     "ultralytics==8.3.23",
