@@ -6,12 +6,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 libglib2.0-0 \
  && rm -rf /var/lib/apt/lists/*
 
-COPY pyproject.toml ./
+COPY requirements-docker.txt ./
 
-RUN python -m pip install --upgrade pip \
- && python -m pip install \
+RUN python -m pip install --no-cache-dir --upgrade pip \
+ && python -m pip install  --no-cache-dir \
       torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cpu \
- && python -m pip install .
+ && python -m pip install --no-cache-dir -r requirements-docker.txt
 
 COPY logger.py .
 COPY tests/dummy_data/automated_reporting ./tests/dummy_data/automated_reporting
