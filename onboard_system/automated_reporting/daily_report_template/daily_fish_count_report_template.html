@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Daily catch count report</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ css_path | default('data:text/css;base64,' + CSS_BASE64) }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="{{ tnc_logo | default('data:image/svg+xml;base64,' + LOGOS_BASE64.get('tnc_logo', '')) }}" alt="The Nature Conservancy">
+                </div>
+                <div class="collaboration-container">
+                    <div class="partner">
+                        <div class="partner-content">
+                            <span>Developed in collaboration with:</span>
+                            <img src="{{ partner_logo | default('data:image/svg+xml;base64,' + LOGOS_BASE64.get('partner_logo', '')) }}" alt="Tryolabs">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="report-header">
+                <div class="date-container">
+                    <img src="{{ calendar_icon | default('data:image/svg+xml;base64,' + LOGOS_BASE64.get('calendar_icon', '')) }}" alt="Calendar" class="date-icon">
+                    <span>DATE | {{ date }}</span>
+                </div>
+
+                <h1 class="report-title">Daily Report</h1>
+
+                <nav class="tabs">
+                    <a href="#summary" class="tab-link active">Summary</a>
+                    <a href="#risk-score" class="tab-link">Aggregated Risk Score</a>
+                    <a href="#catch-sequence" class="tab-link">Catch Sequence</a>
+                    <a href="#gps-locations" class="tab-link">GPS Locations of Catches</a>
+                    <a href="#additional-info" class="tab-link">Additional Information</a>
+                </nav>
+            </div>
+
+            <section id="summary" class="section">
+                <h2>Summary</h2>
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <h3>Total Catches Retained</h3>
+                        <p class="description">Catches that were caught and retained</p>
+                        <p class="stat-value">{{ total_counts.RETAINED }}</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Vessel Discards</h3>
+                        <p class="description">Catches that were caught and returned to the water</p>
+                        <p class="stat-value">{{ total_counts.VESSEL_DISCARD }}</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Total Water Discards</h3>
+                        <p class="description">Catches that were discarded from the water</p>
+                        <p class="stat-value">{{ total_counts.WATER_DISCARD }}</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Risk Score</h3>
+                        <p class="description">Weighted risk score of the day</p>
+                        <p class="stat-value">{{ aggregated_risk_score }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risk-score" class="section">
+                <h2>Aggregated Risk Score</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Risk Category</th>
+                            <th>Value</th>
+                            <th>Risk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Elog Risk</td>
+                            <td>{{ risk_score_elogs.risk_score }}</td>
+                            <td>
+                                {% if risk_score_elogs.risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif risk_score_elogs.risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif risk_score_elogs.risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Illegal Species Risk</td>
+                            <td>{{ risk_score_illegal_species.risk_score }}</td>
+                            <td>
+                                {% if risk_score_illegal_species.risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif risk_score_illegal_species.risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif risk_score_illegal_species.risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>GPS Location Risk</td>
+                            <td>{{ risk_score_gps.risk_score }}</td>
+                            <td>
+                                {% if risk_score_gps.risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif risk_score_gps.risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif risk_score_gps.risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Operational Risk</td>
+                            <td>{{ risk_score_operational.risk_score }}</td>
+                            <td>
+                                {% if risk_score_operational.risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif risk_score_operational.risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif risk_score_operational.risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Model Underprediction Risk</td>
+                            <td>{{ risk_score_model_underprediction.risk_score }}</td>
+                            <td>
+                                {% if risk_score_model_underprediction.risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif risk_score_model_underprediction.risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif risk_score_model_underprediction.risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Overall Risk</td>
+                            <td><strong>{{ aggregated_risk_score }}</strong></td>
+                            <td>
+                                {% if aggregated_risk_score == 3 %}
+                                <span class="high-risk">High Risk</span>
+                                {% elif aggregated_risk_score == 2 %}
+                                <span class="medium-risk">Medium Risk</span>
+                                {% elif aggregated_risk_score == 1 %}
+                                <span class="low-risk">Low Risk</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="catch-sequence" class="section">
+                <h2>Catch Sequence</h2>
+                <div class="export-buttons">
+                    <button onclick="exportTableToCSV('catch_sequence.csv')">
+                        Export Table to CSV
+                    </button>
+                    <button onclick="downloadImagesAsZip()">
+                        Export Evidence Frames
+                    </button>
+                </div>
+
+                <table id="catch-sequence-table">
+                    <thead>
+                        <tr>
+                            <th>Species</th>
+                            <th>Event Type <span class="info-icon" title="Retained = kept on board&#10;Vessel discard = discarded from vessel&#10;Water discard = discarded from water">&#9432;</span></th>
+                            <th>Confidence <span class="info-icon" title="Average confidence of the Fish Detector across the entire track">&#9432;</span></th>
+                            <th>Time</th>
+                            <th>Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for catch in catch_sequence %}
+                        <tr>
+                            <td class="{% if catch.illegal %}illegal-species{% else %}normal-species{% endif %}">
+                                {% if catch.label in ICON_MAPPING[3] and catch.label in ICONS_BASE64[3] %}
+                                    <img src="data:image/png;base64,{{ ICONS_BASE64[3][catch.label] }}" alt="{{ catch.label }}" style="width: 24px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                {% elif catch.label.split('-')[0] in ICON_MAPPING[3] and catch.label.split('-')[0] in ICONS_BASE64[3] %}
+                                    <img src="data:image/png;base64,{{ ICONS_BASE64[3][catch.label.split('-')[0]] }}" alt="{{ catch.label }}" style="width: 24px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                {% elif catch.group in ICON_MAPPING[2] and catch.group in ICONS_BASE64[2] %}
+                                    <img src="data:image/png;base64,{{ ICONS_BASE64[2][catch.group] }}" alt="{{ catch.group }}" style="width: 24px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                {% else %}
+                                    <img src="data:image/png;base64,{{ ICONS_BASE64[1]['CATCH'] }}" alt="CATCH" style="width: 24px; height: auto; vertical-align: middle; margin-right: 8px;">
+                                {% endif %}
+                                {{ catch.name_en }}
+                                <span class="info-icon" title="FAO code: {{ catch.label }}&#10;Scientific Name: {{ catch.scientific_name }}&#10;Spanish Name: {{ catch.name_es }}">
+                                    &#9432;
+                                </span>
+                            </td>
+                            <td><span class="event-type">{{ catch.event_type_display if catch.event_type_display is defined else catch.event_type }}</span></td>
+                            <td>{{ (catch.conf_score * 100) | int }}%</td>
+                            <td>{{ catch.estimated_catch_time.strftime("%H:%M:%S") }}</td>
+                            <td>
+                                {% if catch.evidence_image %}
+                                    <img src="data:image/jpeg;base64,{{ catch.evidence_image }}"
+                                        alt="Evidence Frame"
+                                        class="evidence-thumb"
+                                        data-time="{{ catch.estimated_catch_time.strftime('%d-%b_%H%M%S') }}"
+                                        data-label="{{ catch.label }}"
+                                        data-event="{{ catch.event_type }}"
+                                        data-video="{{ catch.video_filename }}">
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="gps-locations" class="section">
+                <h2>GPS Locations</h2>
+                <div id="map-container">{{ map_html | safe }}</div>
+            </section>
+
+            <section id="additional-info" class="section">
+                <h2>Additional Information</h2>
+                <h3 class="section-header">Risk Score Components</h3>
+
+                <div class="risk-score-container">
+                    <table class="risk-score-table">
+                        <thead>
+                            <tr>
+                                <th class="risk-column">Risk</th>
+                                <th class="feature-column">Risk feature</th>
+                                <th class="value-column">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Elog Risk Score -->
+                            <tr class="risk-section">
+                                <td class="risk-type" rowspan="4">Elog Risk Score</td>
+                                <td class="risk-feature">Total retained catches in elogs</td>
+                                <td class="risk-value">{{ risk_score_elogs.catches_elogs | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Total retained catches predicted by AI model</td>
+                                <td class="risk-value">{{ risk_score_elogs.catches_retained_model | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Difference amount</td>
+                                <td class="risk-value">{{ risk_score_elogs.catches_difference | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Difference percent</td>
+                                <td class="risk-value">{{ risk_score_elogs.catches_difference_percentage | round(0) | int }}%</td>
+                            </tr>
+
+                            <!-- Illegal Species Risk Score -->
+                            <tr class="risk-section">
+                                <td class="risk-type" rowspan="3">Illegal Species Risk Score</td>
+                                <td class="risk-feature">Illegal species retained</td>
+                                <td class="risk-value">{% if risk_score_illegal_species.illegal_species_retained %}{{ risk_score_illegal_species.illegal_species_retained | join(", ") }}{% else %}N/A{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Number of illegal species retained</td>
+                                <td class="risk-value">{{ risk_score_illegal_species.illegal_retained_catches | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Number of illegal species discarded</td>
+                                <td class="risk-value">{{ risk_score_illegal_species.illegal_discarded_catches | int }}</td>
+                            </tr>
+
+                            <!-- GPS Risk Score -->
+                            <tr class="risk-section">
+                                <td class="risk-type" rowspan="4">
+                                    GPS Risk Score
+                                    <div class="risk-subtitle">Max. Distance to EEZ (km): {% if risk_score_gps.max_dist_to_eez_km is not none %}
+                                        {{ risk_score_gps.max_dist_to_eez_km | round(0) | int }}
+                                    {% else %}
+                                        N/A
+                                    {% endif %}</div>
+                                </td>
+                                <td class="risk-feature">Catches inside MPA</td>
+                                <td class="risk-value">{% if risk_score_gps.any_in_mpa %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Catches within coastline buffer</td>
+                                <td class="risk-value">{% if risk_score_gps.any_in_coast_buffer %}Yes{% else %}No{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Min. Distance to MPA (km)</td>
+                                <td class="risk-value">{% if risk_score_gps.min_dist_to_mpa_km is not none %}{{ risk_score_gps.min_dist_to_mpa_km | round(0) | int }}{% else %}N/A{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Min. Distance to coastline buffer (km)</td>
+                                <td class="risk-value">{% if risk_score_gps.min_dist_to_coast_buffer_km is not none %}{{ risk_score_gps.min_dist_to_coast_buffer_km | round(0) | int }}{% else %}N/A{% endif %}</td>
+                            </tr>
+
+                            <!-- Operational Risk Score -->
+                            <tr class="risk-section">
+                                <td class="risk-type" rowspan="6">Operational Risk</td>
+                                <td class="risk-feature">Total Video Time</td>
+                                <td class="risk-value">{{ risk_score_operational.total_time }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Video Time Gaps</td>
+                                <td class="risk-value">{{ risk_score_operational.total_time_gaps }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Video Gaps (%)</td>
+                                <td class="risk-value">{{ risk_score_operational.gaps_percentage_over_total }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Total GPS Time</td>
+                                <td class="risk-value">{{ risk_score_operational.gps_total_time }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">GPS Time Gaps</td>
+                                <td class="risk-value">{{ risk_score_operational.gps_total_time_gaps }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">GPS Gaps (%)</td>
+                                <td class="risk-value">{{ risk_score_operational.gps_gaps_percentage_over_total }}%</td>
+                            </tr>
+
+                            <!-- Model Underprediction Risk Score -->
+                            <tr class="risk-section">
+                                <td class="risk-type" rowspan="4">Model Underprediction</td>
+                                <td class="risk-feature">Total catches in elogs</td>
+                                <td class="risk-value">{{ risk_score_model_underprediction.catches_elogs | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Total retained catches by model</td>
+                                <td class="risk-value">{{ risk_score_model_underprediction.catches_retained_model | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Catches difference</td>
+                                <td class="risk-value">{{ risk_score_model_underprediction.catches_difference | int }}</td>
+                            </tr>
+                            <tr>
+                                <td class="risk-feature">Unprocessed videos (%)</td>
+                                <td class="risk-value">{{ risk_score_model_underprediction.unprocessed_percentage | round(0) | int if risk_score_model_underprediction.unprocessed_percentage is not none else "N/A" }}%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-content">
+                    <h4 class="breakdown-subtitle">Counts by group of species</h4>
+                    <div class="breakdown-section">
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Label</th>
+                                    <th>Retained</th>
+                                    <th>Vessel Discards</th>
+                                    <th>Water Discards</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for group in counts_by_group %}
+                                <tr>
+                                    <td>
+                                        {% if group.label in ICON_MAPPING[2] and group.label in ICONS_BASE64[2] %}
+                                            <img src="data:image/png;base64,{{ ICONS_BASE64[2][group.label] }}" alt="{{ group.label }}" class="icon-small">
+                                        {% endif %}
+                                        {{ group.label }}
+                                    </td>
+                                    <td>{{ group.RETAINED }}</td>
+                                    <td>{{ group.VESSEL_DISCARD }}</td>
+                                    <td>{{ group.WATER_DISCARD }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="breakdown-subtitle">Counts by subgroup of species</h4>
+                    <div class="breakdown-section">
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Label</th>
+                                    <th>Retained</th>
+                                    <th>Vessel Discards</th>
+                                    <th>Water Discards</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for group_subcategory in counts_by_group_subcategory %}
+                                <tr>
+                                    <td>
+                                        {% if group_subcategory.label in ICON_MAPPING[2] and group_subcategory.label in ICONS_BASE64[2] %}
+                                            <img src="data:image/png;base64,{{ ICONS_BASE64[2][group_subcategory.label] }}" alt="{{ group_subcategory.label }}" class="icon-small">
+                                        {% endif %}
+                                        {{ group_subcategory.label }}
+                                    </td>
+                                    <td>{{ group_subcategory.RETAINED }}</td>
+                                    <td>{{ group_subcategory.VESSEL_DISCARD }}</td>
+                                    <td>{{ group_subcategory.WATER_DISCARD }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="breakdown-subtitle">Counts by species</h4>
+                    <div class="breakdown-section">
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Label</th>
+                                    <th>Retained</th>
+                                    <th>Vessel Discards</th>
+                                    <th>Water Discards</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for species in counts_by_species %}
+                                <tr>
+                                    <td>
+                                        {% if species.fao_code in ICON_MAPPING[3] and species.fao_code in ICONS_BASE64[3] %}
+                                            <img src="data:image/png;base64,{{ ICONS_BASE64[3][species.fao_code] }}" alt="{{ species.fao_code }}" class="icon-small">
+                                        {% endif %}
+                                        {{ species.common_name }}
+                                        <span class="info-icon" title="FAO code: {{ species.fao_code }}&#10;Scientific Name: {{ species.scientific_name }}&#10;IUCN category: {{ species.iucn_category }}">
+                                            &#9432;
+                                        </span>
+                                    </td>
+                                    <td>{{ species.RETAINED }}</td>
+                                    <td>{{ species.VESSEL_DISCARD }}</td>
+                                    <td>{{ species.WATER_DISCARD }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <div id="evidenceModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modalImage">
+                <div id="modalCaption"></div>
+            </div>
+
+            <!-- Catch sequence CSV and jpg export -->
+            <script>
+            function downloadCSV(csv, filename) {
+                const csvFile = new Blob([csv], { type: 'text/csv' });
+                const downloadLink = document.createElement('a');
+                downloadLink.download = filename;
+                downloadLink.href = window.URL.createObjectURL(csvFile);
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+
+            function exportTableToCSV(filename) {
+                const rows = document.querySelectorAll("#catch-sequence-table tr");
+
+                if (rows.length <= 1) {
+                    alert("No table to download.");
+                    return;
+                }
+
+                let csv = [];
+                for (let row of rows) {
+                    const cols = row.querySelectorAll("td, th");
+                    const rowData = [];
+                    for (let col of cols) {
+                        let text = col.innerText.replace(/\n/g, ' ').replace(/,/g, ' ');
+                        rowData.push(`"${text}"`);
+                    }
+                    csv.push(rowData.join(","));
+                }
+                downloadCSV(csv.join("\n"), filename);
+            }
+
+            async function downloadImagesAsZip() {
+                const zip = new JSZip();
+                const folder = zip.folder("evidence_frames");
+                const images = document.querySelectorAll("#catch-sequence-table td img.evidence-thumb");
+
+                if (images.length === 0) {
+                    alert("No images to download.");
+                    return;
+                }
+
+                images.forEach((img, index) => {
+                    const time = img.dataset.time || `image_${index + 1}`;
+                    const label = img.dataset.label || 'unknown';
+                    const event = img.dataset.event || 'unknown';
+
+                    const filename = `${time}_${label}_${event}.jpg`;
+
+                    const base64Data = img.src.split(',')[1]; // strip off "data:image/jpeg;base64,"
+                    folder.file(filename, base64Data, { base64: true });
+                });
+
+                const reportDate = "{{ date }}";
+                const zipName = `${reportDate}_evidence_frames.zip`;
+
+                const content = await zip.generateAsync({ type: "blob" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(content);
+                link.download = zipName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            </script>
+
+            <script>
+                var mapIframe = null;
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    console.log("DOM loaded, setting up row click events");
+
+                    // Modal functionality setup for evidence images
+                    const modal = document.getElementById("evidenceModal");
+                    const modalImg = document.getElementById("modalImage");
+                    const modalCaption = document.getElementById("modalCaption");
+                    const closeBtn = document.querySelector(".close");
+
+                    // Add event listeners to all evidence thumbnails
+                    const evidenceThumbs = document.querySelectorAll(".evidence-thumb");
+                    evidenceThumbs.forEach(function(thumb) {
+                        thumb.addEventListener("click", function(event) {
+                            // Stop propagation to prevent row click activation
+                            event.stopPropagation();
+
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+
+                            // Create caption with image information
+                            const time = this.getAttribute("data-time");
+                            const label = this.getAttribute("data-label");
+                            const event_type = this.getAttribute("data-event");
+                            const video = this.getAttribute("data-video");
+                            let eventDisplay = event_type;
+                            if (event_type === "VESSEL_DISCARD") {
+                                eventDisplay = "Vessel Discard";
+                            } else if (event_type === "WATER_DISCARD") {
+                                eventDisplay = "Water Discard";
+                            } else if (event_type === "RETAINED") {
+                                eventDisplay = "Retained";
+                            }
+                            modalCaption.innerHTML = `Species: ${label} | Event: ${eventDisplay} | Time: ${time}<br>Video: ${video}`;
+                        });
+                    });
+
+                    // Close modal when clicking on the close button
+                    closeBtn.addEventListener("click", function() {
+                        modal.style.display = "none";
+                    });
+
+                    // Close modal when clicking outside the image
+                    modal.addEventListener("click", function(event) {
+                        if (event.target === modal) {
+                            modal.style.display = "none";
+                        }
+                    });
+
+                    // Close modal when pressing Escape
+                    document.addEventListener("keydown", function(event) {
+                        if (event.key === "Escape" && modal.style.display === "block") {
+                            modal.style.display = "none";
+                        }
+                    });
+
+                    // Get the map container and store a reference to the iframe
+                    var mapContainer = document.getElementById("map-container");
+                    if (mapContainer) {
+                        var checkIframe = setInterval(function() {
+                            var iframe = mapContainer.querySelector('iframe');
+                            if (iframe) {
+                                clearInterval(checkIframe);
+                                mapIframe = iframe;
+                                console.log("Map iframe found and stored");
+
+                                // Set up message listener for communication from the map
+                                window.addEventListener('message', function(event) {
+                                    // Make sure message is from our iframe
+                                    if (event.source === mapIframe.contentWindow && event.data && event.data.type === 'markerClick') {
+                                        console.log("Received marker click message:", event.data);
+                                        highlightTableRowByIndex(event.data.markerIndex);
+                                    }
+                                });
+
+                                // Give the iframe a moment to load before trying to inject the script
+                                setTimeout(function() {
+                                    injectScriptIntoIframe(mapIframe);
+                                }, 1000);
+                            }
+                        }, 100);
+
+                        // Set up row click events
+                        var tableRows = document.querySelectorAll("#catch-sequence-table tbody tr");
+                        console.log("Found", tableRows.length, "rows in the catch sequence table");
+
+                        tableRows.forEach(function(row, index) {
+                            row.addEventListener("click", function() {
+                                // Remove highlight from all rows
+                                tableRows.forEach(function(r) {
+                                    r.classList.remove("highlighted-row");
+                                });
+
+                                // Add highlight to clicked row
+                                this.classList.add("highlighted-row");
+
+                                // Scroll to map section
+                                document.getElementById('gps-locations').scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center'
+                                });
+
+                                // If the map is loaded, send a message to highlight the marker
+                                if (mapIframe) {
+                                    try {
+                                        mapIframe.contentWindow.postMessage({
+                                            type: 'highlightMarker',
+                                            rowIndex: index
+                                        }, '*');
+                                    } catch (e) {
+                                        console.error("Error sending message to iframe:", e);
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+
+                function injectScriptIntoIframe(iframe) {
+                    try {
+                        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                        // Create a script element to inject
+                        var script = iframeDoc.createElement('script');
+                        script.textContent = `
+                            // Store references to all markers
+                            var allMarkers = [];
+                            var lastHighlightedMarker = null;
+                            var map = null;
+
+                            // Function to find the Leaflet map instance
+                            function findMap() {
+                                for (let key in window) {
+                                    if (window[key] && window[key]._leaflet_id) {
+                                        return window[key];
+                                    }
+                                }
+                                return null;
+                            }
+
+                            // Function to find all markers in the document
+                            function findAllMarkers() {
+                                var markers = [];
+                                if (map) {
+                                    map.eachLayer(function(layer) {
+                                        if (layer instanceof L.Marker) {
+                                            markers.push(layer);
+                                        }
+                                    });
+                                }
+                                console.log("Found", markers.length, "markers");
+                                return markers;
+                            }
+
+                            // Function to initialize marker data
+                            function initializeMarkerData() {
+                                console.log("Initializing marker data");
+                                map = findMap();
+                                if (!map) {
+                                    console.error("No map found");
+                                    return;
+                                }
+
+                                allMarkers = findAllMarkers();
+                                console.log("Found", allMarkers.length, "markers");
+
+                                // Add click event to each marker
+                                allMarkers.forEach(function(marker, index) {
+                                    marker.on('click', function(e) {
+                                        console.log("Marker clicked:", index);
+                                        highlightMarker(marker, true);
+                                        window.parent.postMessage({
+                                            type: 'markerClick',
+                                            markerIndex: index
+                                        }, '*');
+                                    });
+                                });
+                            }
+
+                            // Function to highlight a marker
+                            function highlightMarker(marker, shouldZoom = false) {
+                                console.log("Highlighting marker");
+                                // Reset previous highlight if any
+                                if (lastHighlightedMarker) {
+                                    console.log("Resetting previous highlight");
+                                    lastHighlightedMarker.setZIndexOffset(0);
+                                    const icon = lastHighlightedMarker.getIcon();
+                                    if (icon) {
+                                        try {
+                                            const element = lastHighlightedMarker.getElement();
+                                            if (element) {
+                                                element.style.border = "";
+                                                element.style.boxShadow = "";
+                                                element.style.zIndex = "";
+                                                element.style.filter = "";
+                                            }
+                                        } catch (e) {
+                                            console.error("Error resetting marker style:", e);
+                                        }
+                                    }
+                                    // Close previous popup if exists
+                                    if (lastHighlightedMarker.isPopupOpen()) {
+                                        lastHighlightedMarker.closePopup();
+                                    }
+                                }
+
+                                // Highlight the new marker
+                                marker.setZIndexOffset(1000);
+                                try {
+                                    const element = marker.getElement();
+                                    if (element) {
+                                        console.log("Styling marker element");
+                                        element.style.boxShadow = "0 0 10px 3px white, 0 0 5px 2px #00703C";
+                                        element.style.filter = "drop-shadow(0 0 8px white)";
+                                        element.style.zIndex = "1000";
+                                        element.style.transform = element.style.transform + " scale(1.3)";
+                                    }
+                                } catch (e) {
+                                    console.error("Error styling marker:", e);
+                                }
+
+                                // Open the popup
+                                marker.openPopup();
+
+                                // If shouldZoom is true, zoom to the marker
+                                if (shouldZoom && map) {
+                                    map.setView(marker.getLatLng(), map.getZoom(), {
+                                        animate: true,
+                                        duration: 0.5
+                                    });
+                                }
+
+                                lastHighlightedMarker = marker;
+                            }
+
+                            // Listen for messages from the parent window
+                            window.addEventListener('message', function(event) {
+                                if (event.data && event.data.type === 'highlightMarker') {
+                                    console.log("Received highlight marker message:", event.data);
+                                    var rowIndex = event.data.rowIndex;
+
+                                    // Initialize markers if not already done
+                                    if (!map || allMarkers.length === 0) {
+                                        initializeMarkerData();
+                                    }
+
+                                    // Check if the index is valid
+                                    if (rowIndex >= 0 && rowIndex < allMarkers.length) {
+                                        console.log("Highlighting marker:", rowIndex);
+                                        highlightMarker(allMarkers[rowIndex], true);
+                                    } else {
+                                        console.error("Invalid marker index:", rowIndex, "total markers:", allMarkers.length);
+                                    }
+                                }
+                            });
+
+                            // Initialize when the document is ready
+                            if (document.readyState === 'complete') {
+                                console.log("Document ready, initializing markers");
+                                initializeMarkerData();
+                            } else {
+                                console.log("Document not ready, adding DOMContentLoaded listener");
+                                document.addEventListener('DOMContentLoaded', initializeMarkerData);
+                            }
+
+                            // Also try to initialize after a short delay to ensure the map is loaded
+                            setTimeout(initializeMarkerData, 1000);
+                            // Try again after 3 seconds in case the map is slow to load
+                            setTimeout(initializeMarkerData, 3000);
+                        `;
+                        iframeDoc.body.appendChild(script);
+                        console.log("Script injected into iframe");
+                    } catch (e) {
+                        console.error("Error injecting script into iframe:", e);
+                    }
+                }
+
+                // Function to highlight table row from map
+                function highlightTableRowByIndex(index) {
+                    var tableRows = document.querySelectorAll("#catch-sequence-table tbody tr");
+                    console.log("Highlighting table row:", index, "total rows:", tableRows.length);
+                    if (index >= 0 && index < tableRows.length) {
+                        // Remove highlight from all rows
+                        tableRows.forEach(function(r) {
+                            r.classList.remove("highlighted-row");
+                        });
+
+                        // Add highlight to the selected row
+                        tableRows[index].classList.add("highlighted-row");
+
+                        // Scroll the row into view
+                        tableRows[index].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    } else {
+                        console.error("Invalid row index:", index);
+                    }
+                }
+            </script>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const tabs = document.querySelectorAll('.tab-link');
+
+                    tabs.forEach(tab => {
+                        tab.addEventListener('click', function(e) {
+                            // Remove active class from all tabs
+                            tabs.forEach(t => t.classList.remove('active'));
+                            // Add active class to clicked tab
+                            this.classList.add('active');
+                        });
+                    });
+                });
+            </script>
+
+        </div>
+    </body>
+    </html>
