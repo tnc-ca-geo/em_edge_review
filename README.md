@@ -11,7 +11,7 @@ It can:
 - Deliver actionable intelligence to fishery managers within hours of fishing events
 
 
-## 📢 About This Repository
+## 📢 About this repository
 
 This project and its outcomes were designed to be reproducible and adaptable to other fisheries.
 All source code, model weights, and deployment instructions will be **progressively released** here as components are documented, anonymized, and adapted for broader use.
@@ -19,16 +19,16 @@ All source code, model weights, and deployment instructions will be **progressiv
 The scope and sequence of these releases may evolve, but the intent is to make the most reusable parts of the system publicly available so others can adapt the workflow to their own vessels, species, and regulations.
 
 
-## 📦 Released Components
+## 📦 Released components
 
-### `cvat/` – Annotation Platform Setup
+### `cvat/` – Annotation platform setup
 
 This folder contains instructions and scripts for installing [CVAT](https://cvat.org/), an open-source platform for video and image annotation. In this pilot project, CVAT was used to annotate EM footage for training the fish detector model.
 
 > 📘 See `cvat/README.md` for installation and usage instructions
 
 
-### `fish_detector_model/` – Fish Detector Training Pipeline
+### `fish_detector_model/` – Fish detector training pipeline
 
 This directory contains all necessary scripts and configuration files to **fine-tune and evaluate a fish detection model** using your own annotated dataset. It includes a baseline model (`baseline_fish_detector.pt`) and guidance on customizing for your fishery.
 
@@ -68,14 +68,14 @@ Outputs are provided as:
 
 > 📘 See `onboard_system/automated_reporting/README.md` for setup instructions and guidance on customizing reporting and risk scoring for your fishery.
 
-## 🌐 Project Page
+## 🌐 Project page
 
 For an overview of the project’s motivation, design, and impact, visit the **Project Showcase**:
 
 🔗 **[Project Page](https://tnc-ca-geo.github.io/em_edge_review/)**
 
 
-## 📄 Technical Report
+## 📄 Technical report
 
 The full technical report provides **end‑to‑end details** on the AI-powered system:
 
@@ -94,3 +94,59 @@ To get started with the project, follow these steps:
     ```
 
 3. Create a `.env` file from the provided `.env.template`. Remember to replace all placeholder values with actual values.
+
+## 🐳 Docker deployment
+
+For production deployment or containerized environments, you can use Docker to run the system components.
+
+### Prerequisites
+
+- Docker and Docker Compose installed on your system
+- Raw video files placed in the `./videos` directory
+- Model weights in `./fish_detector_model/baseline_model/`
+
+### Building the Docker image
+
+Build the container image from the root directory:
+```bash
+docker compose build
+```
+
+This creates the `ai-powered-system:latest` image with all dependencies installed.
+
+### Running the system
+
+The system provides two main services that can be run independently:
+
+#### 1. Fish Tracking & Counting
+
+Process videos to detect, track, and count fish:
+```bash
+docker compose run --rm inference
+```
+
+This will:
+- Process videos from `./videos/` directory
+- Use the model at `./fish_detector_model/baseline_model/baseline_fish_detector.pt`
+- Save annotated videos to `./tests/dummy_data/fish_tracker_and_counter/output/video/`
+- Save catch event JSONs to `./tests/dummy_data/fish_tracker_and_counter/output/catch_events/`
+
+#### 2. Daily Report generation
+
+Generate the automated daily report:
+```bash
+docker compose run --rm reporting
+```
+
+This will:
+- Process catch events from the inference output
+- Generate HTML and JSON reports in `./tests/dummy_data/fish_tracker_and_counter/output/daily_report/`
+
+### Customizing for your deployment
+
+Edit `docker-compose.yml` to adjust:
+- **Video input path:** Change `./videos` to your video directory
+- **Output paths:** Modify volume mounts to match your preferred locations
+- **Model path:** Update if using a custom trained model
+
+> 💡 The Docker image uses CPU-only PyTorch by default. For GPU acceleration, modify the Dockerfile to install CUDA-enabled PyTorch and ensure the NVIDIA Container Toolkit is installed on your host system.

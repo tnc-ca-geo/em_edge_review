@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  inference:
+    build: .
+    image: ai-powered-system:latest
+    container_name: fish-tracker-and-counter
+    volumes:
+      # Input: where your raw videos live on the host
+      - ./videos:/data/videos
+      # Model weights
+      - ./fish_detector_model/baseline_model:/models
+      # [Optional] Outputs (annotated videos + JSON catch events)
+      - ./tests/dummy_data/fish_tracker_and_counter/output:/outputs
+    command: >
+      python onboard_system/ai_powered_system/fish_tracker_and_counter/vessel_retained_discard_analysis.py
+      --video_path /data/videos/test_video.mov
+      --model_path /models/baseline_fish_detector.pt
+      --write_results_video
+      --output_video_folder /outputs/video
+      --output_json_folder /outputs/catch_events
+      --tracker_config onboard_system/ai_powered_system/fish_tracker_and_counter/config/botsort.yaml
+      --device cpu
+
+  reporting:
+    build: .
+    image: ai-powered-system:latest
+    container_name: reporting
+    volumes:
+      # [Optional] Where inference wrote JSONs
+      - ./tests/dummy_data/fish_tracker_and_counter/output:/inference_out
+      # [Optional] Where to write reports
+      - ./tests/dummy_data/fish_tracker_and_counter/output/daily_report:/report_out
+    command: >
+      python onboard_system/automated_reporting/generate_daily_report.py
+      --use_dummy_data
+      --report_path /report_out

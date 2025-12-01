@@ -1,5 +1,5 @@
 [project]
-name = "tnc-edge"
+name = "em-edge-review"
 version = "0.1.1"
 description = "Monitoring fishing activity on the edge: Mobilizing AI and edge technologies to advance near real-time electronic monitoring footage review"
 readme = "README.md"
@@ -7,10 +7,20 @@ requires-python = ">=3.12"
 dependencies = [
     "lapx>=0.5.12",
     "mlflow>=3.2.0",
-    "paramiko>=4.0.0",
     "python-dotenv>=1.1.1",
     "shapely>=2.1.1",
     "ultralytics==8.3.23",
     "folium>=0.14.0",
     "geopandas>=0.14.0",
+    "torch==2.3.1",
+    "torchvision==0.18.1",
 ]
+
+[tool.uv.sources]
+torch = { index = "pytorch" }
+torchvision = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

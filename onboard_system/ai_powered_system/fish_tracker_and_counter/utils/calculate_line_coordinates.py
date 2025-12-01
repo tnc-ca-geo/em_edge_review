@@ -1,8 +1,6 @@
-import os
 from typing import List, Tuple
 
 import cv2
-import paramiko
 
 from logger import get_logger
 
