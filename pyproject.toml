@@ -12,4 +12,15 @@ dependencies = [
     "ultralytics==8.3.23",
     "folium>=0.14.0",
     "geopandas>=0.14.0",
+    "torch==2.3.1",
+    "torchvision==0.18.1",
 ]
+
+[tool.uv.sources]
+torch = { index = "pytorch" }
+torchvision = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
