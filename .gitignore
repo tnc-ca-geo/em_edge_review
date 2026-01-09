@@ -1,0 +1,15 @@
+# Ignore all directories created by ultralytics
+Finetune_fish_detector/
+Evaluation Results/
+
+# Ignore test outputs
+tests/dummy_data/fish_tracker_and_counter/output
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

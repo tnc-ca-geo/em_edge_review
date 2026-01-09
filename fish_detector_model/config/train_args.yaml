@@ -1,0 +1,39 @@
+# For a full list of available parameters, see:
+# https://docs.ultralytics.com/modes/train/#train-settings
+
+# Basic training parameters
+model: "fish_detector_model/baseline_model/baseline_fish_detector.pt"
+pretrained: true
+
+imgsz: 640
+batch: 16
+epochs: 300
+patience: 60
+lr0: 0.11e-6
+optimizer: "Adam"
+warmup_epochs: 0
+cos_lr: true
+
+# Augmentations
+degrees: 0.0
+shear: 0.0
+scale: 0.5
+perspective: 0.0
+translate: 0.1
+fliplr: 0.5
+
+# Loss weights
+box: 7.5
+cls: 0.5
+dfl: 1.5
+
+# Regularization
+weight_decay: 0.0005
+dropout: 0.228
+
+# GPU/CPU settings
+device: "0,1"
+
+# Logging and experiment tracking
+project: "Finetune_fish_detector"
+plots: true
