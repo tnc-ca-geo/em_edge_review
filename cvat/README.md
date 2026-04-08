@@ -70,7 +70,7 @@ git checkout tags/$CVAT_VERSION
 rm -rf cvat-ui
 ```
 
-3. Go to `/tnc-edge/cvat` folder and run the following script to deploy CVAT:
+3. Go to `/em_edge_review/cvat` folder and run the following script to deploy CVAT:
 
 ```bash
 ./deploy-cvat.sh

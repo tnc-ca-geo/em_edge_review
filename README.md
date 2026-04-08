@@ -10,6 +10,18 @@ It can:
 
 - Deliver actionable intelligence to fishery managers within hours of fishing events
 
+## 🧩 Companion repository
+
+This repository is closely related to the open-source project _First-mile transparency and traceability on the edge_, which provides a first-mile seafood traceability system that integrates outputs from the AI-powered EM system provided here.
+
+While this repository focuses on the AI-powered EM layer — including onboard catch detection, classification, counting and automated daily reporting — the companion repository focuses on the traceability and data-integration layer, connecting catch events with handling, storage, location, and sustainability information to produce fish-level traceability records.
+
+Together, the two repositories show how onboard monitoring and first-mile traceability can be connected to deliver fish-level records that link catch events, handling data, and sustainability information.
+
+🔗 Companion repository: [First-mile transparency and traceability on the edge](LINK_TO_COMPANION_REPO)
+
+🔗 Companion report: [Report: First-mile transparency and traceability on the edge](LINK_TO_COMPANION_REPORT)
+
 
 ## 📢 About this repository
 
@@ -95,11 +107,11 @@ To get started with the project, follow these steps:
 
 3. Create a `.env` file from the provided `.env.template`. Remember to replace all placeholder values with actual values.
 
-## 🐳 Docker deployment
+## 🐳 Getting started with Docker
 
 For production deployment or containerized environments, you can use Docker to run the system components.
 
-### Prerequisites
+### Requirements
 
 - Docker and Docker Compose installed on your system
 - Raw video files placed in the `./videos` directory
@@ -126,7 +138,7 @@ docker compose run --rm inference
 ```
 
 This will:
-- Process videos from `./videos/` directory
+- Process the video `./data/videos/test_video.mov`
 - Use the model at `./fish_detector_model/baseline_model/baseline_fish_detector.pt`
 - Save annotated videos to `./tests/dummy_data/fish_tracker_and_counter/output/video/`
 - Save catch event JSONs to `./tests/dummy_data/fish_tracker_and_counter/output/catch_events/`
@@ -144,8 +156,8 @@ This will:
 
 ### Customizing for your deployment
 
-Edit `docker-compose.yml` to adjust:
-- **Video input path:** Change `./videos` to your video directory
+Edit the inference service in the `docker-compose.yml` to adjust:
+- **Video input path:** Update `--video_path` in the `command` to point to your input video file
 - **Output paths:** Modify volume mounts to match your preferred locations
 - **Model path:** Update if using a custom trained model
 
