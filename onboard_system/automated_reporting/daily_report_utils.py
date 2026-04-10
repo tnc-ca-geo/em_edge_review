@@ -7,6 +7,9 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 import pytz
 from jinja2 import Template
+
+from logger import get_logger
+from onboard_system.automated_reporting import settings
 from onboard_system.automated_reporting.risk_scores.aggregated_risk_score import (
     calculate_aggregated_risk_score,
 )
@@ -43,9 +46,6 @@ from onboard_system.automated_reporting.risk_scores.utils.risk_score_operational
     get_gps_records_from_server,
     get_todays_videos_from_server,
 )
-
-from logger import get_logger
-from onboard_system.automated_reporting import settings
 from onboard_system.species_registry import ICON_MAPPING
 
 EXPECTED_FPS = settings.EXPECTED_FPS
@@ -116,6 +116,7 @@ def load_logos_as_base64() -> dict:
         "tnc_logo": "tnc-logo.svg",
         "partner_logo": "tryolabs-logo.svg",
         "calendar_icon": "calendar.svg",
+        "play_icon": "play-circle.png",
     }
 
     for key, filename in logo_files.items():

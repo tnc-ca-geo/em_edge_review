@@ -33,6 +33,11 @@
                 </div>
 
                 <h1 class="report-title">Daily Report</h1>
+                {% if use_dummy_data %}
+                <p class="dummy-data-note">
+                    Daily Report Example – data in this example are mock data to protect partner privacy
+                </p>
+                {% endif %}
 
                 <nav class="tabs">
                     <a href="#summary" class="tab-link active">Summary</a>
@@ -217,7 +222,15 @@
                                         data-event="{{ catch.event_type }}"
                                         data-video="{{ catch.video_filename }}">
                                 {% else %}
-                                    N/A
+                                    <div class="dummy-evidence-thumb"
+                                        data-time="{{ catch.estimated_catch_time.strftime('%d-%b_%H%M%S') }}"
+                                        data-label="{{ catch.label }}"
+                                        data-event="{{ catch.event_type }}"
+                                        data-video="{{ catch.video_filename }}">
+                                        <img src="data:image/png;base64,{{ LOGOS_BASE64.get('play_icon', '') }}"
+                                            alt="Dummy Evidence Frame"
+                                            class="dummy-evidence-icon">
+                                    </div>
                                 {% endif %}
                             </td>
                         </tr>

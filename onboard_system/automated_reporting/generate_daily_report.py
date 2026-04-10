@@ -235,20 +235,22 @@ def generate_html_report(
     # Extract evidence frames
     if catch_sequence:
         if use_dummy_data:
-            evidence_dir = os.path.join(DUMMY_DATA_BASE_PATH, "evidence_frames")
+            # When using dummy data, skip extraction and use play-circle.png as fallback
+            for catch in catch_sequence:
+                catch["evidence_image"] = None
         else:
             evidence_dir = os.path.join(report_path, "evidence_frames")
             extract_evidence_frames(catch_sequence=catch_sequence, output_dir=evidence_dir)
-        for catch in catch_sequence:
-            video_filename_base = catch["video_filename"]
-            frame_number = catch["frame_number"]
-            evidence_filename = f"{video_filename_base}_frame_{frame_number}.jpg"
-            evidence_path = os.path.join(evidence_dir, evidence_filename)
-            if os.path.exists(evidence_path):
-                catch["evidence_image"] = encode_to_base64(evidence_path)
-            else:
-                logger.warning(f"File not found: {evidence_path}")
-                catch["evidence_image"] = None
+            for catch in catch_sequence:
+                video_filename_base = catch["video_filename"]
+                frame_number = catch["frame_number"]
+                evidence_filename = f"{video_filename_base}_frame_{frame_number}.jpg"
+                evidence_path = os.path.join(evidence_dir, evidence_filename)
+                if os.path.exists(evidence_path):
+                    catch["evidence_image"] = encode_to_base64(evidence_path)
+                else:
+                    logger.warning(f"File not found: {evidence_path}")
+                    catch["evidence_image"] = None
 
     for catch in catch_sequence:
         label = catch["label"]
@@ -266,6 +268,7 @@ def generate_html_report(
     # Render HTML
     html_content = html_template.render(
         date=date,
+        use_dummy_data=use_dummy_data,
         total_counts=total_counts,
         counts_by_group=counts_by_group,
         counts_by_group_subcategory=counts_by_group_subcategory,
