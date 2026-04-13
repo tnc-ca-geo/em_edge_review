@@ -1,8 +1,22 @@
-"""Custom Object Counter Module
+"""
+Custom Object Counter Module - MODIFIED ULTRALYTICS WORK
 
 This module provides the CustomObjectCounter class, which extends the BaseObjectCounter
-to implement specific IN and OUT counting logic based on y-coordinate crossings
+from Ultralytics to implement specific IN and OUT counting logic based on y-coordinate crossings
 in a video stream.
+
+MODIFICATION NOTICE:
+- This work is derived from Ultralytics ObjectCounter (https://github.com/ultralytics/ultralytics)
+- Modifications made: January 7, 2025
+- Modified components: Extended BaseObjectCounter with deferred counting logic, track history storage,
+  and custom bounding box label formatting for fish detection tracking
+
+LICENSE COMPLIANCE:
+This work is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
+As per AGPL-3.0 terms, any derivative works must also be licensed under AGPL-3.0.
+Original Ultralytics code is licensed under AGPL-3.0.
+
+For full license details, see: https://www.gnu.org/licenses/agpl-3.0.html
 """
 
 
