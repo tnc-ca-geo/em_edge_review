@@ -30,6 +30,15 @@ All source code, model weights, and deployment instructions will be **progressiv
 
 The scope and sequence of these releases may evolve, but the intent is to make the most reusable parts of the system publicly available so others can adapt the workflow to their own vessels, species, and regulations.
 
+## License
+
+This repository contains modified code based on Ultralytics software and is released under the GNU Affero General Public License v3.0 (AGPL-3.0). See the `LICENSE` file for the full license text.
+
+Users should review the applicable Ultralytics license terms before using, modifying, distributing, or deploying this code.
+
+For official Ultralytics licensing information, see:
+- [Ultralytics License](https://www.ultralytics.com/license)
+
 
 ## 📦 Released components
 
