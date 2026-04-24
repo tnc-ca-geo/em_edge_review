@@ -18,9 +18,9 @@ While this repository focuses on the AI-powered EM layer — including onboard c
 
 Together, the two repositories show how onboard monitoring and first-mile traceability can be connected to deliver fish-level records that link catch events, handling data, and sustainability information.
 
-🔗 Companion repository: [First-mile transparency and traceability on the edge](LINK_TO_COMPANION_REPO)
+🔗 Companion repository: [First-mile transparency and traceability on the edge](https://github.com/tnc-ca-geo/em_edge_trace)
 
-🔗 Companion report: [Report: First-mile transparency and traceability on the edge](LINK_TO_COMPANION_REPORT)
+🔗 Companion report: [Report: First-mile transparency and traceability on the edge](https://www.nature.org/en-us/what-we-do/our-insights/perspectives/ai-electronic-monitoring-fisheries-report/)
 
 
 ## 📢 About this repository
@@ -100,7 +100,7 @@ For an overview of the project’s motivation, design, and impact, visit the **P
 
 The full technical report provides **end‑to‑end details** on the AI-powered system:
 
-📥 **[Download Technical Report (PDF)](LINK_TO_FINAL_REPORT)**
+📥 **[Download Technical Report (PDF)](https://www.nature.org/en-us/what-we-do/our-insights/perspectives/ai-electronic-monitoring-fisheries-report/)**
 
 ## 🚀 Installation
 
