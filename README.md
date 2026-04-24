@@ -32,13 +32,9 @@ The scope and sequence of these releases may evolve, but the intent is to make t
 
 ## License
 
-This repository contains modified code based on Ultralytics software and is released under the GNU Affero General Public License v3.0 (AGPL-3.0). See the `LICENSE` file for the full license text.
+Subject to any terms and conditions required for pre-existing code (including AGPL-3.0), The Nature Conservancy releases this code for the advancement of ocean conservation and its mission to conserve the lands and waters on which all life depends, and The Nature Conservancy reserves all rights to its name and marks.
 
-Users should review the applicable Ultralytics license terms before using, modifying, distributing, or deploying this code.
-
-For official Ultralytics licensing information, see:
-- [Ultralytics License](https://www.ultralytics.com/license)
-
+See the `LICENSE` file for a full license text.
 
 ## 📦 Released components
 
