@@ -14,14 +14,12 @@ It builds on Ultralytics YOLO’s tracking (BoT-SORT by default) and adds custom
 Before running the scripts, ensure you have:
 
 - Installed all dependencies (see the root-level `README.md`)
-- A trained fish detector (e.g., `fish_detector_model/baseline_model/baseline_fish_detector.pt`)
+- [Downloaded the baseline fish detector](../../../fish_detector_model/README.md#download-the-baseline-model) to `fish_detector_model/baseline_model/baseline_fish_detector.pt`, or supplied your own trained detector
 - Optional: Adjusted tracker settings in `config/botsort.yaml` or pass your own YAML path via `--tracker_config`
 
 ## 🚀 Quick start
 
 ### ▶️ Run on a test video
-
-Try the included test clip (download it [here](https://github.com/user-attachments/assets/220d572c-adcc-4f01-aa8f-32b0d2c56112))
 
 ```bash
 uv run onboard_system/ai_powered_system/fish_tracker_and_counter/vessel_retained_discard_analysis.py \

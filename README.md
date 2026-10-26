@@ -47,9 +47,9 @@ This folder contains instructions and scripts for installing [CVAT](https://www.
 
 ### `fish_detector_model/` – Fish detector training pipeline
 
-This directory contains all necessary scripts and configuration files to **fine-tune and evaluate a fish detection model** using your own annotated dataset. It includes a baseline model (`baseline_fish_detector.pt`) and guidance on customizing for your fishery.
+This directory contains all necessary scripts and configuration files to **fine-tune and evaluate a fish detection model** using your own annotated dataset. The baseline model is distributed separately as GitHub release assets in two formats: `baseline_fish_detector.pt` (PyTorch) and `baseline_fish_detector.onnx` (ONNX).
 
-> 📘 See `fish_detector_model/README.md` for detailed training instructions
+> 📘 See `fish_detector_model/README.md` for model download and training instructions
 
 ### `onboard_system/ai_powered_system/fish_tracker_and_counter/` – Fish Tracking & Counting
 
@@ -112,6 +112,8 @@ To get started with the project, follow these steps:
 
 3. Create a `.env` file from the provided `.env.template`. Remember to replace all placeholder values with actual values.
 
+4. [Download the baseline fish detector](fish_detector_model/README.md#download-the-baseline-model) into `fish_detector_model/baseline_model/`.
+
 ## 🐳 Getting started with Docker
 
 For production deployment or containerized environments, you can use Docker to run the system components.
@@ -120,7 +122,7 @@ For production deployment or containerized environments, you can use Docker to r
 
 - Docker and Docker Compose installed on your system
 - Raw video files placed in the `./videos` directory
-- Model weights in `./fish_detector_model/baseline_model/`
+- `baseline_fish_detector.pt` downloaded to `./fish_detector_model/baseline_model/`
 
 ### Building the Docker image
 
